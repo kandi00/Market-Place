@@ -1,14 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment.LoginFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".fragments.LoginFragment"
+        android:background="@color/black">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/bDark"
+            android:padding="@dimen/login_fragment_constraint_layout_padding">
+
+            <TextView
+                android:id="@+id/textView_login_fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_fragment_tv_margin_top"
+                android:text="@string/log_in"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/login_fragment_text_view_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/edittext_name_login_fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_fragment_text_view_margin_top"
+                android:background="@drawable/boarder"
+                android:ems="10"
+                android:autofillHints="@string/name"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textColor="@color/dirtyWhite"
+                android:textColorHint="@color/hintGrey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_login_fragment" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_fragment_text_view_email_margin_top"
+                android:background="@color/bDark"
+                android:layout_marginStart="@dimen/login_fragment_edit_text_view_margin_start"
+                android:text="@string/email"
+                android:paddingStart="@dimen/login_fragment_text_view_padding_start"
+                android:paddingEnd="@dimen/login_fragment_text_view_padding_end"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_login_fragment" />
+
+            <EditText
+                android:id="@+id/edittext_password_login_fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_fragment_text_view_margin_top"
+                android:background="@drawable/boarder"
+                android:ems="10"
+                android:autofillHints="@string/password"
+                android:inputType="textPassword"
+                android:padding="@dimen/login_fragment_edit_text_view_padding"
+                android:textColor="@color/dirtyWhite"
+                android:textColorHint="@color/hintGrey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edittext_name_login_fragment" />
+
+            <Button
+                android:id="@+id/button_login_fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_fragment_text_view_margin_top"
+                android:ems="12"
+                android:text="@string/log_in"
+                android:textAllCaps="false"
+                android:textStyle="normal"
+                android:backgroundTint="@color/bTurqoise"
+                android:radius="@dimen/login_fragment_button_radius"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edittext_password_login_fragment" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>
