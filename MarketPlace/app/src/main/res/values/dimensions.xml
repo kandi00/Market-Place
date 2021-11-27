@@ -14,6 +14,51 @@
     <dimen name="login_fragment_button_radius">300dp</dimen>
     <dimen name="login_fragment_text_view_padding_start">5dp</dimen>
     <dimen name="login_fragment_text_view_padding_end">5dp</dimen>
+    <dimen name="login_fragment_layout_marginTop">30dp</dimen>
+    <dimen name="login_fragment_sign_up_button_marginTop">20dp</dimen>
+    <dimen name="login_fragment_button_text_size">14sp</dimen>
 
+    <!--    Product detail fragment-->
+    <dimen name="product_detail_fragment_iv1_layout_height">300dp</dimen>
+    <dimen name="product_detail_fragment_iv2_layout_width">80dp</dimen>
+    <dimen name="product_detail_fragment_iv2_layout_height">80dp</dimen>
+    <dimen name="product_detail_fragment_iv2_layout_marginStart">20dp</dimen>
+    <dimen name="product_detail_fragment_iv2_layout_marginTop">10dp</dimen>
+    <dimen name="product_detail_fragment_tv1_layout_marginTop">30dp</dimen>
+    <dimen name="product_detail_fragment_tv1_layout_marginLeft">20dp</dimen>
+    <dimen name="product_detail_fragment_tv1_padding">15dp</dimen>
+    <dimen name="product_detail_fragment_tv2_layout_marginLeft">20dp</dimen>
+    <dimen name="product_detail_fragment_tv2_textSize">18sp</dimen>
+    <dimen name="product_detail_fragment_tv2_paddingStart">15dp</dimen>
+    <dimen name="product_detail_fragment_tv2_paddingEnd">15dp</dimen>
+    <dimen name="product_detail_fragment_tv3_layout_marginStart">20dp</dimen>
+    <dimen name="product_detail_fragment_tv3_textSize">22sp</dimen>
+    <dimen name="product_detail_fragment_tv3_padding">15dp</dimen>
+    <dimen name="product_detail_fragment_tv4_padding">15dp</dimen>
+    <dimen name="product_detail_fragment_tv4_layout_marginStart">20dp</dimen>
+
+    <!--    Timeline fragment-->
+    <dimen name="timeline_fragment_rv_layout_marginBottom">50dp</dimen>
+
+    <!--    Product item-->
+    <dimen name="product_item_card_view_cardCornerRadius">5dp</dimen>
+    <dimen name="product_item_card_view_layout_marginStart">25dp</dimen>
+    <dimen name="product_item_card_view_layout_marginEnd">25dp</dimen>
+    <dimen name="product_item_card_view_layout_marginTop">10dp</dimen>
+    <dimen name="product_item_card_view_layout_marginBottom">10dp</dimen>
+    <dimen name="product_item_tv1_layout_marginStart">15dp</dimen>
+    <dimen name="product_item_tv1_padding">8dp</dimen>
+    <dimen name="product_item_tv1_layout_marginTop">5dp</dimen>
+    <dimen name="product_item_tv1_textSize">18sp</dimen>
+    <dimen name="product_item_tv2_layout_marginStart">20dp</dimen>
+    <dimen name="product_item_tv2_paddingBottom">5dp</dimen>
+    <dimen name="product_item_tv2_textSize">18sp</dimen>
+    <dimen name="product_item_iv_1_layout_width">50dp</dimen>
+    <dimen name="product_item_iv_1_layout_height">50dp</dimen>
+    <dimen name="product_item_iv_1_layout_marginStart">16dp</dimen>
+    <dimen name="product_item_iv_1_layout_marginBottom">16dp</dimen>
+    <dimen name="product_item_tv3_layout_marginStart">15dp</dimen>
+    <dimen name="product_item_tv3_paddingLeft">10dp</dimen>
+    <dimen name="product_item_tv4_layout_marginStart">20dp</dimen>
 
 </resources>

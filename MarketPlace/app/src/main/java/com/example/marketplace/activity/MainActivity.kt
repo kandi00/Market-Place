@@ -2,8 +2,10 @@ package com.example.marketplace.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.marketplace.R
 import com.example.marketplace.databinding.ActivityMainBinding
@@ -11,13 +13,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityMainBinding
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding!!
     private lateinit var bottomNavigation : BottomNavigationView
     private lateinit var navController : NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         bottomNavigation = binding.bottomNavigation
@@ -25,5 +28,15 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         bottomNavigation.setupWithNavController(navController)
 
+        //hiding bottomNavigation in case of LoginFragment
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            bottomNavigation.visibility = if (destination.id == R.id.loginFragment) {
+                View.GONE
+            } else {
+                View.VISIBLE
+            }
+        }
     }
 }
+
+

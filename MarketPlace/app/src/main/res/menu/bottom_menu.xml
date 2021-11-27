@@ -3,12 +3,14 @@
 
     <item
         android:id="@id/timelineFragment"
+        android:icon="@drawable/ic_bazar_launcher_icons_foreground"
         android:title="@string/timeline" />
     <item
         android:id="@+id/myMarketFragment"
         android:icon="@drawable/ic_shopping_cart"
         android:title="@string/my_market" />
     <item
+        android:id="@+id/myFaresFragment"
         android:icon="@drawable/ic_my_fares"
         android:title="@string/my_fares" />
 </menu>

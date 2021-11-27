@@ -35,7 +35,7 @@
                 android:layout_marginTop="@dimen/login_fragment_text_view_margin_top"
                 android:background="@drawable/boarder"
                 android:ems="10"
-                android:autofillHints="@string/name"
+                android:hint="@string/name"
                 android:inputType="textPersonName"
                 android:padding="10dp"
                 android:textColor="@color/dirtyWhite"
@@ -64,7 +64,7 @@
                 android:layout_marginTop="@dimen/login_fragment_text_view_margin_top"
                 android:background="@drawable/boarder"
                 android:ems="10"
-                android:autofillHints="@string/password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:padding="@dimen/login_fragment_edit_text_view_padding"
                 android:textColor="@color/dirtyWhite"
@@ -80,14 +80,41 @@
                 android:layout_marginTop="@dimen/login_fragment_text_view_margin_top"
                 android:ems="12"
                 android:text="@string/log_in"
+                android:textSize="@dimen/login_fragment_button_text_size"
                 android:textAllCaps="false"
-                android:textStyle="normal"
                 android:backgroundTint="@color/bTurqoise"
                 android:radius="@dimen/login_fragment_button_radius"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edittext_password_login_fragment" />
+
+            <TextView
+                android:id="@+id/new_to_bazaar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_fragment_layout_marginTop"
+                android:text="@string/new_to_bazaar"
+                android:textColor="@color/dirtyWhite"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button_login_fragment" />
+
+            <Button
+                android:id="@+id/signUp_button_login_fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_fragment_sign_up_button_marginTop"
+                android:ems="12"
+                android:text="@string/sign_up"
+                android:textSize="@dimen/login_fragment_button_text_size"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/bTurqoise"
+                android:radius="@dimen/login_fragment_button_radius"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/new_to_bazaar" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>

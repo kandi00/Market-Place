@@ -23,5 +23,13 @@
     <fragment
         android:id="@+id/timelineFragment"
         android:name="com.example.marketplace.fragment.TimelineFragment"
-        android:label="TimelineFragment" />
+        android:label="TimelineFragment" >
+        <action
+            android:id="@+id/action_timelineFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.example.marketplace.fragment.ProductDetailFragment"
+        android:label="ProductDetailFragment" />
 </navigation>

@@ -9,7 +9,8 @@ import com.example.marketplace.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var binding : FragmentProfileBinding
+    private var _binding: FragmentProfileBinding? = null
+    private val binding get() = _binding!!
     private lateinit var fragment : View
 
     override fun onCreateView(
@@ -17,8 +18,13 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentProfileBinding.inflate(inflater, container, false)
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
         fragment = binding.root
         return fragment
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

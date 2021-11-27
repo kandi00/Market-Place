@@ -19,7 +19,8 @@ import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
 
-    private lateinit var binding : FragmentLoginBinding
+    private var _binding: FragmentLoginBinding? = null
+    private val binding get() = _binding!!
     private lateinit var fragment : View
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var editTextLoginName : EditText
@@ -37,9 +38,8 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
         fragment = binding.root
-
         initializeElements()
         setListeners()
 
@@ -47,7 +47,6 @@ class LoginFragment : Fragment() {
             //Log.d("xxx", "navigate to list")
             findNavController().navigate(R.id.action_loginFragment_to_timelineFragment)
         }
-
         return fragment
     }
 
@@ -61,10 +60,12 @@ class LoginFragment : Fragment() {
         button.setOnClickListener {
             loginViewModel.user.value.let {
                 if (it != null) {
-                    it.username = editTextLoginName.text.toString()
+                    //it.username = editTextLoginName.text.toString()
+                    it.username="testUser"
                 }
                 if (it != null) {
-                    it.password = editTextLoginPassword.text.toString()
+//                    it.password = editTextLoginPassword.text.toString()
+                    it.password = "testuser123"
                 }
             }
             lifecycleScope.launch {
@@ -72,5 +73,10 @@ class LoginFragment : Fragment() {
             }
 
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

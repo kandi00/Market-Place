@@ -36,7 +36,6 @@ class DataAdapter(
         override fun onClick(p0: View?) {
             val currentPosition = this.adapterPosition
             listener.onItemClick(currentPosition)
-
         }
     }
 
