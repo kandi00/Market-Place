@@ -1,31 +1,29 @@
 package com.example.marketplace.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marketplace.R
-import com.example.marketplace.adapter.DataAdapter
+import com.example.marketplace.adapter.TimelineDataAdapter
 import com.example.marketplace.databinding.FragmentTimelineBinding
 import com.example.marketplace.model.Product
 import com.example.marketplace.repository.Repository
 import com.example.marketplace.viewmodels.ListViewModel
 import com.example.marketplace.viewmodels.ListViewModelFactory
 
-class TimelineFragment : Fragment(), DataAdapter.OnItemClickListener {
+class TimelineFragment : Fragment(), TimelineDataAdapter.OnItemClickListener {
 
     private var _binding: FragmentTimelineBinding? = null
     private val binding get() = _binding!!
     private lateinit var fragment : View
     private lateinit var listViewModel: ListViewModel
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: DataAdapter
+    private lateinit var adapter: TimelineDataAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +35,6 @@ class TimelineFragment : Fragment(), DataAdapter.OnItemClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.i("itt", "itt")
         // Inflate the layout for this fragment
         _binding = FragmentTimelineBinding.inflate(inflater, container, false)
         fragment = binding.root
@@ -51,14 +48,8 @@ class TimelineFragment : Fragment(), DataAdapter.OnItemClickListener {
     }
 
     private fun setupRecyclerView(){
-        adapter = DataAdapter(ArrayList<Product>(), this.requireContext(), this)
+        adapter = TimelineDataAdapter(ArrayList<Product>(), this.requireContext(), this)
         recyclerView.adapter = adapter
-        recyclerView.addItemDecoration(
-            DividerItemDecoration(
-                activity,
-                DividerItemDecoration.VERTICAL
-            )
-        )
     }
 
     override fun onItemClick(position: Int) {
@@ -67,7 +58,6 @@ class TimelineFragment : Fragment(), DataAdapter.OnItemClickListener {
     }
 
     override fun onDestroyView() {
-        Log.i("destroy itt", "itt")
         super.onDestroyView()
         _binding = null
     }

@@ -10,6 +10,9 @@
     <color name="full_white">#FFFFFF</color>
     <color name="dirtyWhite">#EEEEEE</color>
     <color name="bDark">#212121</color>
-    <color name="bTurqoise">#00B5C0</color>
+    <color name="turquoise">#00B5C0</color>
     <color name="hintGrey">#878787</color>
+    <color name="B_Dark">#161616</color>
+    <color name="grey">#000000</color>
+    <color name="red">#FF1E1E</color>
 </resources>

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -25,12 +26,14 @@ class LoginFragment : Fragment() {
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var editTextLoginName : EditText
     private lateinit var editTextLoginPassword : EditText
-    private lateinit var button : Button
+    private lateinit var loginButton : Button
+    private lateinit var signUpButton : Button
+    private lateinit var forgotPassword : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val factory = LoginViewModelFactory(this.requireContext(), Repository())
-        loginViewModel = ViewModelProvider(this, factory).get(LoginViewModel::class.java)
+        loginViewModel = ViewModelProvider(requireActivity(), factory).get(LoginViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -53,11 +56,13 @@ class LoginFragment : Fragment() {
     private fun initializeElements(){
         editTextLoginName = binding.edittextNameLoginFragment
         editTextLoginPassword = binding.edittextPasswordLoginFragment
-        button = binding.buttonLoginFragment
+        loginButton = binding.buttonLoginFragment
+        signUpButton = binding.signUpButtonLoginFragment
+        forgotPassword = binding.tvClickHere
     }
 
     private fun setListeners(){
-        button.setOnClickListener {
+        loginButton.setOnClickListener {
             loginViewModel.user.value.let {
                 if (it != null) {
                     //it.username = editTextLoginName.text.toString()
@@ -71,7 +76,14 @@ class LoginFragment : Fragment() {
             lifecycleScope.launch {
                 loginViewModel.login()
             }
+        }
 
+        signUpButton.setOnClickListener{
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+
+        forgotPassword.setOnClickListener{
+            findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
         }
     }
 

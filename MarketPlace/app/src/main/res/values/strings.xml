@@ -6,8 +6,42 @@
     <string name="my_fares">My fares</string>
     <string name="log_in">Log in</string>
     <string name="name">Name</string>
-    <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="new_to_bazaar">New to Bazaaar?</string>
     <string name="sign_up">Sign up</string>
+    <string name="register">Register</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="username">User name</string>
+    <string name="input_text">Input text</string>
+    <string name="user_name">User name</string>
+    <string name="give_us_details_about_your_fare">Give us details about your fare</string>
+    <string name="inactive">Inactive</string>
+    <string name="active">Active</string>
+    <string name="email">Email</string>
+    <string name="title">Title</string>
+    <string name="price_amount">Price/amount</string>
+    <string name="ron">RON</string>
+    <string name="available_amount">Available amount</string>
+    <string name="kg">KG</string>
+    <string name="short_description">Short description</string>
+    <string name="launch_my_fare">Launch my fare</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="reset_password">We will send you an email with instructions on how to reset your passsword</string>
+    <string name="email_me">Email me</string>
+    <string name="phone_number">Phone number</string>
+    <string name="publish">Publish</string>
+    <string name="click_here">Click here</string>
+    <string name="order_now">Order now</string>
+
+    <string-array name="currencies">
+        <item>RON</item>
+        <item>HUF</item>
+        <item>EURO</item>
+    </string-array>
+
+    <string-array name="units">
+        <item>KG</item>
+        <item>L</item>
+        <item>NO</item>
+    </string-array>
 </resources>

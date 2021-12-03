@@ -4,11 +4,11 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/bDark</item>
         <item name="colorPrimaryVariant">@color/bDark</item>
-        <item name="colorOnPrimary">@color/bTurqoise</item>
+        <item name="colorOnPrimary">@color/turquoise</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/bTurqoise</item>
-        <item name="colorSecondaryVariant">@color/bTurqoise</item>
-        <item name="colorOnSecondary">@color/bTurqoise</item>
+        <item name="colorSecondary">@color/turquoise</item>
+        <item name="colorSecondaryVariant">@color/turquoise</item>
+        <item name="colorOnSecondary">@color/turquoise</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->

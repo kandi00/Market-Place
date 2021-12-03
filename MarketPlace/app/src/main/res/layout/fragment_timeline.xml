@@ -15,7 +15,7 @@
             android:layout_height="match_parent"
             app:layoutManager="LinearLayoutManager"
             android:layout_marginBottom="@dimen/timeline_fragment_rv_layout_marginBottom"
-            tools:listitem="@layout/product_item"
+            tools:listitem="@layout/product_item_timeline"
             android:background="@color/dirtyWhite" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

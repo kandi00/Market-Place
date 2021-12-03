@@ -8,8 +8,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.marketplace.R
 import com.example.marketplace.databinding.FragmentProductDetailBinding
+import com.example.marketplace.model.Product
 import com.example.marketplace.viewmodels.ListViewModel
+import com.example.marketplace.viewmodels.LoginViewModel
 
 class ProductDetailFragment : Fragment() {
 
@@ -22,6 +26,16 @@ class ProductDetailFragment : Fragment() {
     private lateinit var pricePerAmount : TextView
     private lateinit var shortDescription : TextView
     private lateinit var listViewModel: ListViewModel
+    private lateinit var loginViewModel: LoginViewModel
+    private lateinit var currentProduct : Product
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        listViewModel = ViewModelProvider(requireActivity()).get(ListViewModel::class.java)
+        loginViewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
+        currentProduct = listViewModel.getCurrentProduct()
+        loginViewModel.getUserInfo(currentProduct.username)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,8 +43,9 @@ class ProductDetailFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentProductDetailBinding.inflate(inflater, container, false)
-        listViewModel = ViewModelProvider(requireActivity()).get(ListViewModel::class.java)
         initializeElements()
+        setValues()
+        setListeners()
         return binding.root
     }
 
@@ -41,14 +56,24 @@ class ProductDetailFragment : Fragment() {
         title = binding.tvTitle
         pricePerAmount = binding.tvPricePerAmount
         shortDescription = binding.tvShortDescription
+    }
 
-//        val current = Product(3.5, "L", "RON", "manyi_1635877013127", "manyi",
-//        true, "50","1","60 fokos","szilvapálinka", listOf(),1635877013218,)
-        val current = listViewModel.getCurrentProduct()
-        nameOfSeller.text = current.username
-        title.text = current.title
-        pricePerAmount.text = "${current.price_per_unit} ${current.price_type} / ${current.amount_type}"
-        shortDescription.text = current.description
+    @SuppressLint("SetTextI18n")
+    private fun setValues(){
+        nameOfSeller.text = currentProduct.username
+        title.text = currentProduct.title
+        pricePerAmount.text = "${currentProduct.price_per_unit} ${currentProduct.price_type} / ${currentProduct.amount_type}"
+        shortDescription.text = currentProduct.description
+    }
+
+    private fun setListeners(){
+        profilePictureOfSeller.setOnClickListener{
+            findNavController().navigate(R.id.action_productDetailFragment_to_profileFragment)
+        }
+
+        nameOfSeller.setOnClickListener{
+            findNavController().navigate(R.id.action_productDetailFragment_to_profileFragment)
+        }
     }
 
     override fun onDestroyView() {

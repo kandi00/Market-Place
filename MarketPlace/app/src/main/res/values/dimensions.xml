@@ -3,10 +3,10 @@
 
     <!--    MainActivity-->
 
-    <!--    LoginFragment-->
+    <!--    LoginFragment/RegisterFragment-->
     <dimen name="login_fragment_constraint_layout_padding">50dp</dimen>
     <dimen name="login_fragment_tv_margin_top">20dp</dimen>
-    <dimen name="login_fragment_text_view_margin_top">50dp</dimen>
+    <dimen name="login_fragment_text_view_margin_top">30dp</dimen>
     <dimen name="login_fragment_text_view_email_margin_top">40dp</dimen>
     <dimen name="login_fragment_text_view_text_size">20sp</dimen>
     <dimen name="login_fragment_edit_text_view_padding">10dp</dimen>
@@ -29,12 +29,11 @@
     <dimen name="product_detail_fragment_tv1_padding">15dp</dimen>
     <dimen name="product_detail_fragment_tv2_layout_marginLeft">20dp</dimen>
     <dimen name="product_detail_fragment_tv2_textSize">18sp</dimen>
-    <dimen name="product_detail_fragment_tv2_paddingStart">15dp</dimen>
-    <dimen name="product_detail_fragment_tv2_paddingEnd">15dp</dimen>
+    <dimen name="product_detail_fragment_tv2_padding">10dp</dimen>
     <dimen name="product_detail_fragment_tv3_layout_marginStart">20dp</dimen>
     <dimen name="product_detail_fragment_tv3_textSize">22sp</dimen>
-    <dimen name="product_detail_fragment_tv3_padding">15dp</dimen>
-    <dimen name="product_detail_fragment_tv4_padding">15dp</dimen>
+    <dimen name="product_detail_fragment_tv3_padding">10dp</dimen>
+    <dimen name="product_detail_fragment_tv4_padding">10dp</dimen>
     <dimen name="product_detail_fragment_tv4_layout_marginStart">20dp</dimen>
 
     <!--    Timeline fragment-->
@@ -46,19 +45,24 @@
     <dimen name="product_item_card_view_layout_marginEnd">25dp</dimen>
     <dimen name="product_item_card_view_layout_marginTop">10dp</dimen>
     <dimen name="product_item_card_view_layout_marginBottom">10dp</dimen>
-    <dimen name="product_item_tv1_layout_marginStart">15dp</dimen>
-    <dimen name="product_item_tv1_padding">8dp</dimen>
+    <dimen name="product_item_tv1_layout_marginStart">25dp</dimen>
+    <dimen name="product_item_tv1_padding">10dp</dimen>
     <dimen name="product_item_tv1_layout_marginTop">5dp</dimen>
     <dimen name="product_item_tv1_textSize">18sp</dimen>
-    <dimen name="product_item_tv2_layout_marginStart">20dp</dimen>
+    <dimen name="product_item_tv2_layout_marginStart">16dp</dimen>
     <dimen name="product_item_tv2_paddingBottom">5dp</dimen>
-    <dimen name="product_item_tv2_textSize">18sp</dimen>
-    <dimen name="product_item_iv_1_layout_width">50dp</dimen>
-    <dimen name="product_item_iv_1_layout_height">50dp</dimen>
-    <dimen name="product_item_iv_1_layout_marginStart">16dp</dimen>
-    <dimen name="product_item_iv_1_layout_marginBottom">16dp</dimen>
-    <dimen name="product_item_tv3_layout_marginStart">15dp</dimen>
+    <dimen name="product_item_tv2_textSize">14sp</dimen>
+    <dimen name="product_item_iv_1_layout_width">65dp</dimen>
+    <dimen name="product_item_iv_1_layout_height">65dp</dimen>
+    <dimen name="product_item_iv_1_layout_marginStart">15dp</dimen>
+    <dimen name="product_item_iv_1_layout_marginBottom">5dp</dimen>
+    <dimen name="product_item_tv3_layout_marginStart">20dp</dimen>
     <dimen name="product_item_tv3_paddingLeft">10dp</dimen>
-    <dimen name="product_item_tv4_layout_marginStart">20dp</dimen>
+    <dimen name="product_item_tv4_layout_marginStart">5dp</dimen>
+
+    <!--    ProfileFragment-->
+
+
+    <!--    EditProfileFragment-->
 
 </resources>

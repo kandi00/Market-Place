@@ -3,6 +3,7 @@ package com.example.marketplace.viewmodels
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.marketplace.MyApplication
+import com.example.marketplace.model.NewProduct
 import com.example.marketplace.model.Product
 import com.example.marketplace.repository.Repository
 import kotlinx.coroutines.launch
@@ -23,8 +24,9 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
                     repository.getProducts(MyApplication.token)
                 products.value = result.products
                 Log.d("xxx", "ListViewModel - #products:  ${result.item_count}")
+                products.value!![14].is_active = false
             }catch(e: Exception){
-                Log.d("xxx", "ListViewMofdel exception: ${e.toString()}")
+                Log.d("xxx", "ListViewMofdel exception: $e")
             }
         }
     }
@@ -32,5 +34,10 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
     fun getCurrentProduct(): Product {
         Log.i("pos", products.value.toString())
         return products.value?.get(currentProductPosition)!!
+    }
+
+    suspend fun addProduct(newProduct : NewProduct){
+        val result = repository.addProduct(MyApplication.token, newProduct)
+        Log.i("result", result.toString())
     }
 }

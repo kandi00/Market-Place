@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/card_view"
+        card_view:cardCornerRadius="@dimen/product_item_card_view_cardCornerRadius"
+        android:layout_marginStart="@dimen/product_item_card_view_layout_marginStart"
+        android:layout_marginEnd="@dimen/product_item_card_view_layout_marginEnd"
+        android:layout_marginTop="@dimen/product_item_card_view_layout_marginTop"
+        android:layout_marginBottom="@dimen/product_item_card_view_layout_marginBottom">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tv_timeline_product_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:padding="@dimen/product_item_tv1_padding"
+                android:textColor="@color/black"
+                android:textSize="@dimen/product_item_tv1_textSize"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintStart_toEndOf="@+id/imageView_timeline_product_image"
+                card_view:layout_constraintTop_toBottomOf="@+id/imageView_timeline_profile" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageView_timeline_profile"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/prune"
+                card_view:civ_border_color="@color/dirtyWhite"
+                card_view:civ_border_width="1dp"
+                card_view:layout_constraintStart_toEndOf="@+id/imageView_timeline_product_image"
+                card_view:layout_constraintTop_toTopOf="parent"
+                card_view:srcCompat="@drawable/prune"/>
+
+            <TextView
+                android:id="@+id/tv_timeline_price"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="@dimen/product_item_tv2_layout_marginStart"
+                android:textColor="@color/black"
+                android:paddingBottom="@dimen/product_item_tv2_paddingBottom"
+                android:textSize="@dimen/product_item_tv2_textSize"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@+id/imageView_timeline_product_image" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageView_timeline_product_image"
+                android:layout_width="@dimen/product_item_iv_1_layout_width"
+                android:layout_height="@dimen/product_item_iv_1_layout_height"
+                android:layout_marginStart="@dimen/product_item_iv_1_layout_marginStart"
+                android:layout_marginTop="@dimen/product_item_iv_1_layout_marginBottom"
+                android:scaleType="centerCrop"
+                android:src="@drawable/prune"
+                card_view:civ_border_color="@color/dirtyWhite"
+                card_view:civ_border_width="1dp"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent"
+                card_view:srcCompat="@drawable/prune"/>
+
+            <TextView
+                android:id="@+id/tv_timeline_seller"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="@dimen/product_item_tv4_layout_marginStart"
+                card_view:layout_constraintStart_toEndOf="@+id/imageView_timeline_profile"
+                card_view:layout_constraintTop_toTopOf="parent"/>
+
+            <Button
+                android:id="@+id/button_order_now"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="@string/order_now"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/black"
+                card_view:cornerRadius="999dp"
+                android:textColor="@color/dirtyWhite"
+                android:drawableLeft="@drawable/ic_shopping_cart"
+                card_view:layout_constraintStart_toEndOf="@+id/tv_timeline_price"
+                card_view:layout_constraintTop_toBottomOf="@+id/tv_timeline_product_title"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>

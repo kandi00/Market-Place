@@ -11,15 +11,32 @@
         <action
             android:id="@+id/action_loginFragment_to_timelineFragment"
             app:destination="@id/timelineFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/myMarketFragment"
         android:name="com.example.marketplace.fragment.MyMarketFragment"
-        android:label="MyMarketFragment" />
+        android:label="MyMarketFragment" >
+        <action
+            android:id="@+id/action_myMarketFragment_to_addDetailMarketFragment"
+            app:destination="@id/addDetailMarketFragment" />
+        <action
+            android:id="@+id/action_myMarketFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.marketplace.fragment.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/timelineFragment"
         android:name="com.example.marketplace.fragment.TimelineFragment"
@@ -31,5 +48,29 @@
     <fragment
         android:id="@+id/productDetailFragment"
         android:name="com.example.marketplace.fragment.ProductDetailFragment"
-        android:label="ProductDetailFragment" />
+        android:label="ProductDetailFragment" >
+        <action
+            android:id="@+id/action_productDetailFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.marketplace.fragment.EditProfileFragment"
+        android:label="EditProfileFragment" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.marketplace.fragment.RegisterFragment"
+        android:label="RegisterFragment" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.example.marketplace.fragment.ForgotPasswordFragment"
+        android:label="ForgotPasswordFragment" />
+    <fragment
+        android:id="@+id/addDetailMarketFragment"
+        android:name="com.example.marketplace.fragment.AddDetailMarketItemFragment"
+        android:label="AddDetailMarketFragment" />
 </navigation>

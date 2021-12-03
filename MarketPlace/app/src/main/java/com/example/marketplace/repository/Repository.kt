@@ -1,9 +1,7 @@
 package com.example.marketplace.repository
 
 import com.example.marketplace.api.RetrofitInstance
-import com.example.marketplace.model.LoginRequest
-import com.example.marketplace.model.LoginResponse
-import com.example.marketplace.model.ProductResponse
+import com.example.marketplace.model.*
 
 class Repository {
     suspend fun login(request: LoginRequest): LoginResponse {
@@ -13,4 +11,17 @@ class Repository {
     suspend fun getProducts(token: String): ProductResponse {
         return RetrofitInstance.api.getProducts(token)
     }
+
+    suspend fun getUserInfo(userName : String) : UserInfoResponse{
+        return RetrofitInstance.api.getUserInfo(userName)
+    }
+
+    suspend fun updateUserData(token : String, updateUserData : UpdateUserDataRequest) : UpdateUserDataResponse{
+        return RetrofitInstance.api.updateUserData(token, updateUserData)
+    }
+
+    suspend fun addProduct(token: String, newProduct : NewProduct) : AddProductResponse{
+        return RetrofitInstance.api.addProduct(token, newProduct)
+    }
+
 }

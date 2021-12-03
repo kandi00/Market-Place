@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.marketplace.R
 import com.example.marketplace.databinding.ActivityMainBinding
@@ -30,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         //hiding bottomNavigation in case of LoginFragment
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            bottomNavigation.visibility = if (destination.id == R.id.loginFragment) {
+            bottomNavigation.visibility = if (destination.id == R.id.loginFragment || destination.id == R.id.registerFragment || destination.id == R.id.forgotPasswordFragment) {
                 View.GONE
             } else {
                 View.VISIBLE

@@ -3,9 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:context=".fragment.AddDetailMarketItemFragment"
+        android:layout_marginBottom="60dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/full_white"
         tools:context=".fragment.ProductDetailFragment">
 
@@ -18,13 +24,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_profile_picture_of_seller"
             android:layout_width="@dimen/product_detail_fragment_iv2_layout_width"
             android:layout_height="@dimen/product_detail_fragment_iv2_layout_height"
             android:layout_marginStart="@dimen/product_detail_fragment_iv2_layout_marginStart"
             android:layout_marginTop="@dimen/product_detail_fragment_iv2_layout_marginTop"
-            android:src="@drawable/prune"
+            android:src="@drawable/ic_user"
+            app:civ_border_color="@color/dirtyWhite"
+            app:civ_border_width="1dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_image_of_the_product" />
 
@@ -46,8 +54,7 @@
             android:layout_marginStart="@dimen/product_detail_fragment_tv2_layout_marginLeft"
             android:textStyle="bold"
             android:textSize="@dimen/product_detail_fragment_tv2_textSize"
-            android:paddingStart="@dimen/product_detail_fragment_tv2_paddingStart"
-            android:paddingEnd="@dimen/product_detail_fragment_tv2_paddingEnd"
+            android:padding="@dimen/product_detail_fragment_tv2_padding"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_profile_picture_of_seller" />
 
@@ -67,9 +74,12 @@
             android:id="@+id/tv_short_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/product_detail_fragment_tv4_padding"
             android:layout_marginStart="@dimen/product_detail_fragment_tv4_layout_marginStart"
+            android:padding="@dimen/product_detail_fragment_tv4_padding"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_price_per_amount" />
+            app:layout_constraintTop_toBottomOf="@id/tv_price_per_amount"
+            app:layout_constraintVertical_bias="0.15" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

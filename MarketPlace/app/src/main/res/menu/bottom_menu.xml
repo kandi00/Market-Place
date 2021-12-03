@@ -10,7 +10,7 @@
         android:icon="@drawable/ic_shopping_cart"
         android:title="@string/my_market" />
     <item
-        android:id="@+id/myFaresFragment"
+        android:id="@+id/editProfileFragment"
         android:icon="@drawable/ic_my_fares"
         android:title="@string/my_fares" />
 </menu>
