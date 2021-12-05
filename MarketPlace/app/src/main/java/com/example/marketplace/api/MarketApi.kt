@@ -19,4 +19,9 @@ interface MarketApi {
 
     @POST(Constants.ADD_PRODUCT)
     suspend fun addProduct(@Header("token") token: String,  @Body newProduct : NewProduct) : AddProductResponse
+
+    @POST(Constants.UPDATE_PRODUCT)
+    suspend fun updateProduct(@Header("token") token : String,
+                              @Query("product_id") productId : String,
+                              @Body updateProduct : UpdateProduct) : UpdateProductResponse
 }

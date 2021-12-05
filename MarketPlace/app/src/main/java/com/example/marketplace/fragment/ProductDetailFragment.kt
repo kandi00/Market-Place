@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
@@ -28,6 +29,7 @@ class ProductDetailFragment : Fragment() {
     private lateinit var listViewModel: ListViewModel
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var currentProduct : Product
+    private lateinit var editButton : ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +58,7 @@ class ProductDetailFragment : Fragment() {
         title = binding.tvTitle
         pricePerAmount = binding.tvPricePerAmount
         shortDescription = binding.tvShortDescription
+        editButton = binding.ivEditProductIcon
     }
 
     @SuppressLint("SetTextI18n")
@@ -73,6 +76,14 @@ class ProductDetailFragment : Fragment() {
 
         nameOfSeller.setOnClickListener{
             findNavController().navigate(R.id.action_productDetailFragment_to_profileFragment)
+        }
+
+        if (loginViewModel.user.value!!.username == currentProduct.username) {
+            editButton.visibility = View.VISIBLE
+        }
+
+        editButton.setOnClickListener{
+            findNavController().navigate(R.id.action_productDetailFragment_to_editDetailMarketItemFragment)
         }
     }
 

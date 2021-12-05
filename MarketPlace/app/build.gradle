@@ -4,8 +4,8 @@ plugins {
 }
 
 android {
-    dataBinding {
-        enabled true
+    buildFeatures {
+        viewBinding = true
     }
     compileSdkVersion 31
     buildToolsVersion "30.0.3"

@@ -10,7 +10,6 @@ import com.example.marketplace.databinding.FragmentForgotPasswordBinding
 
 class ForgotPasswordFragment : Fragment() {
 
-
     private var _binding : FragmentForgotPasswordBinding? = null
     private val binding get() = _binding!!
     private lateinit var fragment : View

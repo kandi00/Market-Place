@@ -17,16 +17,21 @@ import com.example.marketplace.util.Constants
 class MyMarketDataAdapter(
     private var list: ArrayList<Product>,
     private val context: Context,
-    private val listener: OnItemClickListener
+    private val listener: OnItemClickListener,
+    private val listener_: OnItemLongClickListener
 ) : RecyclerView.Adapter<MyMarketDataAdapter.MyMarketProductViewHolder>() {
 
     interface OnItemClickListener{
         fun onItemClick(position: Int)
     }
 
+    interface OnItemLongClickListener{
+        fun onItemLongClick(position: Int)
+    }
+
     // 1. user defined ViewHolder type - Embedded class!
     inner class MyMarketProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
-        View.OnClickListener {
+        View.OnClickListener, View.OnLongClickListener {
         val textViewName: TextView = itemView.findViewById(R.id.tv_my_market_product_title)
         val textViewPrice: TextView = itemView.findViewById(R.id.textView_my_market_price)
         val textViewSeller: TextView = itemView.findViewById(R.id.tv_my_market_seller)
@@ -37,10 +42,17 @@ class MyMarketDataAdapter(
 
         init{
             itemView.setOnClickListener(this)
+            itemView.setOnLongClickListener(this)
         }
         override fun onClick(p0: View?) {
             val currentPosition = this.adapterPosition
             listener.onItemClick(currentPosition)
+        }
+
+        override fun onLongClick(p0: View?): Boolean {
+            val currentPosition = this.adapterPosition
+            listener_.onItemLongClick(currentPosition)
+            return true
         }
     }
 

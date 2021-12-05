@@ -1,7 +1,6 @@
 package com.example.marketplace.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,7 @@ import com.example.marketplace.model.Product
 import com.example.marketplace.viewmodels.ListViewModel
 import com.example.marketplace.viewmodels.LoginViewModel
 
-class MyMarketFragment : Fragment(), MyMarketDataAdapter.OnItemClickListener {
+class MyMarketFragment : Fragment(), MyMarketDataAdapter.OnItemClickListener, MyMarketDataAdapter.OnItemLongClickListener {
 
     private var _binding: FragmentMyMarketBinding? = null
     private val binding get() = _binding!!
@@ -50,7 +49,7 @@ class MyMarketFragment : Fragment(), MyMarketDataAdapter.OnItemClickListener {
     }
 
     private fun setupRecyclerView(){
-        adapter = MyMarketDataAdapter(ArrayList<Product>(), this.requireContext(), this)
+        adapter = MyMarketDataAdapter(ArrayList<Product>(), this.requireContext(), this, this)
         recyclerView.adapter = adapter
     }
 
@@ -60,6 +59,10 @@ class MyMarketFragment : Fragment(), MyMarketDataAdapter.OnItemClickListener {
         val pos = listViewModel.products.value!!.indexOf(listViewModel.products.value!!.filter { it.username == loginViewModel.user.value!!.username }[position])
         listViewModel.currentProductPosition = pos
         findNavController().navigate(R.id.action_myMarketFragment_to_productDetailFragment)
+    }
+
+    override fun onItemLongClick(position: Int) {
+        //todo - delete product
     }
 
     private fun setListeners(){

@@ -7,17 +7,18 @@ data class Image(val _id: String, val image_id: String, val image_name: String, 
 
 @JsonClass(generateAdapter = true)
 data class Product(val rating: Double,
-                   val amount_type: String,
-                   val price_type: String,
+                   var amount_type: String,
+                   var price_type: String,
                    val product_id: String,
                    val username: String,
                    var is_active: Boolean,
-                   val price_per_unit: String,
-                   val units: String,
-                   val description: String,
-                   val title: String,
+                   var price_per_unit: String,
+                   var units: String,
+                   var description: String,
+                   var title: String,
                    val images: List<Image>,
-                   val creation_time: Long
+                   val creation_time: Long,
+                   val messages : List<String>
 )
 
 @JsonClass(generateAdapter = true)
@@ -45,3 +46,16 @@ data class AddProductResponse(val creation: String,
                               val title : String,
                               val images : List<Image>,
                               val creation_time : Long)
+
+/** Update product request - response **/
+@JsonClass(generateAdapter = true)
+data class UpdateProduct( val price_per_unit: String,
+                          val is_active: Boolean,
+                          val title : String,
+                          val amount_type: String,
+                          val price_type: String,
+                          val units : String,
+                          val description : String)
+
+@JsonClass(generateAdapter = true)
+data class UpdateProductResponse(val updated_item : Product)

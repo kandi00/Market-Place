@@ -1,6 +1,5 @@
 package com.example.marketplace.viewmodels
 
-import android.app.Application
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

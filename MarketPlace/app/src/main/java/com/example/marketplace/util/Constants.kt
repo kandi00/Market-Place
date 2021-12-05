@@ -7,6 +7,7 @@ object Constants {
         const val GET_USER_INFO = "user/data"
         const val UPDATE_USER_DATA = "user/update"
         const val ADD_PRODUCT = "products/add"
+        const val UPDATE_PRODUCT = "products/update"
 
 
 
