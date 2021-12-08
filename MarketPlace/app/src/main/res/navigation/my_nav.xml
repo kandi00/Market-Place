@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
     app:startDestination="@id/loginFragment">
 
@@ -44,6 +45,9 @@
         <action
             android:id="@+id/action_timelineFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment" />
+        <action
+            android:id="@+id/action_timelineFragment_to_addOrderDetailFragment"
+            app:destination="@id/addOrderDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
@@ -80,4 +84,9 @@
         android:id="@+id/editDetailMarketItemFragment"
         android:name="com.example.marketplace.fragment.EditDetailMarketItemFragment"
         android:label="EditDetailMarketItemFragment" />
+    <fragment
+        android:id="@+id/addOrderDetailFragment"
+        android:name="com.example.marketplace.fragment.AddOrderFragment"
+        android:label="fragment_add_order_detail"
+        tools:layout="@layout/fragment_add_order" />
 </navigation>

@@ -28,4 +28,8 @@ class Repository {
         return RetrofitInstance.api.updateProduct(token, productId, updateProduct)
     }
 
+    suspend fun addOrder(token: String, addOrder : AddOrder) : AddOrderResponse {
+        return RetrofitInstance.api.addOrder(token, addOrder)
+    }
+
 }

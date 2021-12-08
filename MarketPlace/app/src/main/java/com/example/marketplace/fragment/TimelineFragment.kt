@@ -57,6 +57,11 @@ class TimelineFragment : Fragment(), TimelineDataAdapter.OnItemClickListener {
         findNavController().navigate(R.id.action_timelineFragment_to_productDetailFragment)
     }
 
+    override fun onOrderNowButtonClick(position: Int) {
+        listViewModel.currentProductPosition = position
+        findNavController().navigate(R.id.action_timelineFragment_to_addOrderDetailFragment)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

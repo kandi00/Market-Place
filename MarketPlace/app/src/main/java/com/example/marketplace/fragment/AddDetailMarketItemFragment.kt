@@ -7,11 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.lifecycle.lifecycleScope
 import com.example.marketplace.databinding.FragmentAddDetailMarketItemBinding
 import com.example.marketplace.model.NewProduct
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.launch
 
 class AddDetailMarketItemFragment : BaseMarketItemFragment<FragmentAddDetailMarketItemBinding>() {
 
@@ -19,8 +17,6 @@ class AddDetailMarketItemFragment : BaseMarketItemFragment<FragmentAddDetailMark
         _binding = FragmentAddDetailMarketItemBinding.inflate(inflater, container, false)
     }
 
-//    private var _binding: FragmentAddDetailMarketItemBinding? = null
-//    private val binding get() = _binding!!
     private lateinit var productDetailUploadImage : ImageView
 
     private val getImage = registerForActivityResult(
@@ -64,14 +60,12 @@ class AddDetailMarketItemFragment : BaseMarketItemFragment<FragmentAddDetailMark
                 )
                 Log.i("product", product.toString())
 
-                lifecycleScope.launch {
-                    try {
-                        listViewModel.addProduct(product)
-                        Snackbar.make(binding.root, "Item added successfully", Snackbar.LENGTH_LONG)
-                                .show()
-                    } catch (e: Exception) {
-                        Log.d("xxx", "add item exception: $e")
-                    }
+                try {
+                    listViewModel.addProduct(product)
+                    Snackbar.make(binding.root, "Item added successfully", Snackbar.LENGTH_LONG)
+                            .show()
+                } catch (e: Exception) {
+                    Log.d("AddDetailMarketFragment", "add item exception: $e")
                 }
             }
 

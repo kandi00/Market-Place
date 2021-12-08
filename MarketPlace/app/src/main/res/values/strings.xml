@@ -32,6 +32,13 @@
     <string name="publish">Publish</string>
     <string name="click_here">Click here</string>
     <string name="order_now">Order now</string>
+    <string name="amount_ordered">Amount ordered</string>
+    <string name="description">Description</string>
+    <string name="send_my_order">Send my order</string>
+    <string name="total_price">Total price: %1$s</string>
+    <string name="open">Open</string>
+    <string name="price_per_amount">%1$s %2$s/%3$s </string>
+    <string name="seller">Seller name: %1$s</string>
 
     <string-array name="currencies">
         <item>RON</item>

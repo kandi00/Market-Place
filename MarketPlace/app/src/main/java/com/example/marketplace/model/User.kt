@@ -23,11 +23,8 @@ data class LoginResponse (
 @JsonClass(generateAdapter = true)
 data class UserInfo (
     var username: String,
-    var phone_number: Int,
-    var email: String,
-    var firebase_token : String,
-    var is_activated: Boolean,
-    var creation_time: Long
+    var phone_number: Long,
+    var email: String
 )
 
 @JsonClass(generateAdapter = true)

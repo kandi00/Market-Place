@@ -3,11 +3,15 @@ package com.example.marketplace.viewmodels
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.marketplace.MyApplication
-import com.example.marketplace.model.NewProduct
-import com.example.marketplace.model.Product
-import com.example.marketplace.model.UpdateProduct
+import com.example.marketplace.model.*
 import com.example.marketplace.repository.Repository
 import kotlinx.coroutines.launch
+import org.json.JSONException
+
+import org.json.JSONObject
+import retrofit2.HttpException
+import java.io.IOException
+
 
 class ListViewModel(private val repository: Repository) : ViewModel() {
     var products: MutableLiveData<List<Product>> = MutableLiveData()
@@ -36,9 +40,29 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
         return products.value?.get(currentProductPosition)!!
     }
 
-    suspend fun addProduct(newProduct : NewProduct){
-        val result = repository.addProduct(MyApplication.token, newProduct)
-        Log.i("result", result.toString())
+    fun addProduct(newProduct : NewProduct){
+        try{
+            viewModelScope.launch {
+                val result = repository.addProduct(MyApplication.token, newProduct)
+                Log.i("result", result.toString())
+            }
+        } catch(e : Exception){
+            if (e is HttpException) {
+                val exception: HttpException = e as HttpException
+                val response: retrofit2.Response<*>? = exception.response()
+                try {
+                    val jsonObject = JSONObject(response?.errorBody()!!.string())
+                    Log.e("Error ", "" + jsonObject.optString("message"))
+                } catch (e1: JSONException) {
+                    e1.printStackTrace()
+                    Log.e("JSONException", "exception")
+                } catch (e1: IOException) {
+                    e1.printStackTrace()
+                    Log.e("add product IOException", "exception")
+                }
+            }
+        }
+
     }
 
     fun updateProduct(updateProduct : UpdateProduct){
@@ -53,6 +77,13 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
             currentProduct.units = result.updated_item.units
             currentProduct.description = result.updated_item.description
             Log.d("xxx", "LoginViewModel - updateUserData:  ${result.updated_item}")
+        }
+    }
+
+    fun addOrder(addOrder : AddOrder){
+        viewModelScope.launch {
+            val result = repository.addOrder(MyApplication.token, addOrder)
+            Log.i("result", result.toString())
         }
     }
 }

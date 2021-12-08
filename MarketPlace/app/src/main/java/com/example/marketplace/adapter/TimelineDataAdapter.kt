@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,7 @@ class TimelineDataAdapter(
 
     interface OnItemClickListener{
         fun onItemClick(position: Int)
+        fun onOrderNowButtonClick(position : Int)
     }
 
     // 1. user defined ViewHolder type - Embedded class!
@@ -30,13 +32,18 @@ class TimelineDataAdapter(
         val textViewSeller: TextView = itemView.findViewById(R.id.tv_timeline_seller)
         val imageViewProduct : ImageView = itemView.findViewById(R.id.imageView_timeline_product_image)
         val imageViewSeller  : ImageView = itemView.findViewById(R.id.imageView_timeline_profile)
+        private val orderNowButton : Button = itemView.findViewById(R.id.button_order_now)
 
         init{
             itemView.setOnClickListener(this)
+            orderNowButton.setOnClickListener(this)
         }
-        override fun onClick(p0: View?) {
+        override fun onClick(v: View?) {
             val currentPosition = this.adapterPosition
-            listener.onItemClick(currentPosition)
+            when(v?.id){
+                orderNowButton.id -> listener.onOrderNowButtonClick(currentPosition)
+                else -> listener.onItemClick(currentPosition)
+            }
         }
     }
 
