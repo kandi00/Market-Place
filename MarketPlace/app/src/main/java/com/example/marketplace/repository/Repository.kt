@@ -8,8 +8,8 @@ class Repository {
         return RetrofitInstance.api.login(request)
     }
 
-    suspend fun getProducts(token: String): ProductResponse {
-        return RetrofitInstance.api.getProducts(token)
+    suspend fun getProducts(token: String, limit : Int): ProductResponse {
+        return RetrofitInstance.api.getProducts(token, limit)
     }
 
     suspend fun getUserInfo(userName : String) : UserInfoResponse{
@@ -20,8 +20,8 @@ class Repository {
         return RetrofitInstance.api.updateUserData(token, updateUserData)
     }
 
-    suspend fun addProduct(token: String, newProduct : NewProduct) : AddProductResponse{
-        return RetrofitInstance.api.addProduct(token, newProduct)
+    suspend fun addProduct(token: String, title: String, description: String, price_per_unit: String, units: String, is_active: Boolean, rating: Double, amount_type: String, price_type: String) : AddProductResponse{
+        return RetrofitInstance.api.addProduct(token, title, description, price_per_unit, units, is_active, rating, amount_type, price_type)
     }
 
     suspend fun updateProduct(token: String, productId : String, updateProduct : UpdateProduct): UpdateProductResponse {
@@ -29,7 +29,11 @@ class Repository {
     }
 
     suspend fun addOrder(token: String, addOrder : AddOrder) : AddOrderResponse {
-        return RetrofitInstance.api.addOrder(token, addOrder)
+        return RetrofitInstance.api.addOrder(token, addOrder.title, addOrder.description, addOrder.price_per_unit, addOrder.units, addOrder.status, addOrder.owner_username, addOrder.revolut_link)
+    }
+
+    suspend fun getOrders(token: String): OrderResponse {
+        return RetrofitInstance.api.getOrders(token)
     }
 
 }

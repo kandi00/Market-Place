@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.marketplace.databinding.FragmentAddDetailMarketItemBinding
-import com.example.marketplace.model.NewProduct
+import com.example.marketplace.model.Product
 import com.google.android.material.snackbar.Snackbar
 
-class AddDetailMarketItemFragment : BaseMarketItemFragment<FragmentAddDetailMarketItemBinding>() {
+class AddMarketItemFragment : BaseMarketItemFragment<FragmentAddDetailMarketItemBinding>() {
 
     override fun onCreateViewBinding(inflater: LayoutInflater, container: ViewGroup?) {
         _binding = FragmentAddDetailMarketItemBinding.inflate(inflater, container, false)
@@ -47,28 +47,22 @@ class AddDetailMarketItemFragment : BaseMarketItemFragment<FragmentAddDetailMark
             checkData()
 
             if(flag) {
-                val product = NewProduct(
-                    //listOf(),
-                    productTitle.text.toString(),
-                    productDescription.text.toString(),
-                    productPrice.text.toString(),
-                    productTotalAmount.text.toString(),
-                    switch.isChecked,
-                    5.0,
-                    autoCompleteTextView2.text.toString(),
-                    autoCompleteTextView1.text.toString()
-                )
-                Log.i("product", product.toString())
-
                 try {
-                    listViewModel.addProduct(product)
+                    listViewModel.addProduct( productTitle.text.toString(),
+                                            productDescription.text.toString(),
+                                            productPrice.text.toString(),
+                                            productTotalAmount.text.toString(),
+                                            switch.isChecked,
+                                            5.0,
+                                            autoCompleteTextView2.text.toString(),
+                                            autoCompleteTextView1.text.toString())
+
                     Snackbar.make(binding.root, "Item added successfully", Snackbar.LENGTH_LONG)
                             .show()
                 } catch (e: Exception) {
                     Log.d("AddDetailMarketFragment", "add item exception: $e")
                 }
             }
-
         }
     }
 

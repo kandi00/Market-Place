@@ -18,9 +18,9 @@
 
         <TextView
             android:id="@+id/tv_my_market_product_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/product_item_tv1_layout_marginStart"
+            android:layout_marginStart="110dp"
             android:layout_marginEnd="5dp"
             android:padding="@dimen/product_item_tv1_padding"
             android:textColor="@color/black"

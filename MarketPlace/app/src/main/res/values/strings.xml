@@ -38,7 +38,12 @@
     <string name="total_price">Total price: %1$s</string>
     <string name="open">Open</string>
     <string name="price_per_amount">%1$s %2$s/%3$s </string>
+    <string name="amount">Amount: %1$s </string>
+    <string name="price">Price: %1$s </string>
     <string name="seller">Seller name: %1$s</string>
+    <string name="ongoing_sales">Ongoing sales</string>
+    <string name="ongoing_orders">Ongoing Orders</string>
+    <string name="incoming_order">Incoming order</string>
 
     <string-array name="currencies">
         <item>RON</item>
@@ -50,5 +55,13 @@
         <item>KG</item>
         <item>L</item>
         <item>NO</item>
+    </string-array>
+
+    <string-array name="states">
+        <item>Incoming order</item>
+        <item>Accepted order</item>
+        <item>Declined order</item>
+        <item>Delivering order</item>
+        <item>Delivered order</item>
     </string-array>
 </resources>

@@ -24,7 +24,6 @@ data class Product(val rating: Double,
 @JsonClass(generateAdapter = true)
 data class ProductResponse(val item_count: Int, val products: List<Product>, val timestamp: Long)
 
-@JsonClass(generateAdapter = true)
 data class NewProduct(//val uploadImages: List<Image>,
                       val title: String,
                       val description: String,
@@ -59,23 +58,3 @@ data class UpdateProduct( val price_per_unit: String,
 
 @JsonClass(generateAdapter = true)
 data class UpdateProductResponse(val updated_item : Product)
-
-/** Add order request - response **/
-@JsonClass(generateAdapter = true)
-data class AddOrder( val title : String,
-                     val description : String,
-                     val price_per_unit: String,
-                     val units : String,
-                     val status : String,
-                     val owner_username : String,
-                     val revolut_link : String)
-
-@JsonClass(generateAdapter = true)
-data class AddOrderResponse(val creation : String,
-                            val order_id : String,
-                            val username: String,
-                            val status : String,
-                            val price_per_unit: String,
-                            val units : String,
-                            val description : String,
-                            val title : String)

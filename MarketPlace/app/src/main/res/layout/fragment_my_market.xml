@@ -15,19 +15,14 @@
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/product_item_my_market" />
 
-    <Button
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/addButton"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/turquoise"
-        android:text="+"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        app:cornerRadius="999dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_add_market_item"
         app:layout_constraintBottom_toBottomOf="@+id/recycler_view_my_market"
         app:layout_constraintEnd_toEndOf="parent" />
 

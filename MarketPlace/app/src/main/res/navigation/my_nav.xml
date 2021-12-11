@@ -78,7 +78,7 @@
         android:label="ForgotPasswordFragment" />
     <fragment
         android:id="@+id/addDetailMarketFragment"
-        android:name="com.example.marketplace.fragment.AddDetailMarketItemFragment"
+        android:name="com.example.marketplace.fragment.AddMarketItemFragment"
         android:label="AddDetailMarketFragment" />
     <fragment
         android:id="@+id/editDetailMarketItemFragment"
@@ -89,4 +89,18 @@
         android:name="com.example.marketplace.fragment.AddOrderFragment"
         android:label="fragment_add_order_detail"
         tools:layout="@layout/fragment_add_order" />
+    <fragment
+        android:id="@+id/myFaresFragment"
+        android:name="com.example.marketplace.fragment.MyFaresFragment"
+        android:label="fragment_my_fares"
+        tools:layout="@layout/fragment_my_fares" >
+        <action
+            android:id="@+id/action_myFaresFragment_to_orderDetailFragment"
+            app:destination="@id/orderDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderDetailFragment"
+        android:name="com.example.marketplace.fragment.OrderDetailFragment"
+        android:label="fragment_order_detail"
+        tools:layout="@layout/fragment_order_detail" />
 </navigation>

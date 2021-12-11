@@ -75,15 +75,15 @@ class AddOrderFragment : Fragment() {
             if (!amount.editText?.text.isNullOrEmpty()){
                 if (flag) {
                     val order = AddOrder(productTitle.text.toString(),
-                                     description.editText?.text.toString(),
-                                     currentProduct.price_per_unit,
-                                     amount.editText?.text.toString(),
-                                     status.text.toString(),
-                                     currentProduct.username,
-                                     "link")
+                        description.editText?.text.toString(),
+                        currentProduct.price_per_unit,
+                        amount.editText?.text.toString(),
+                        status.text.toString(),
+                        currentProduct.username,
+                        "link")
                     Log.i("order", order.toString())
                     try{
-                        //listViewModel.addOrder(order)
+                        listViewModel.addOrder(order)
                         Snackbar.make(binding.root, "Order completed!", Snackbar.LENGTH_LONG)
                                 .show()
                     } catch(e : Exception) {

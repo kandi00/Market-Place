@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/card_view"
+    card_view:cardCornerRadius="@dimen/product_item_card_view_cardCornerRadius"
+    android:layout_marginStart="@dimen/product_item_card_view_layout_marginStart"
+    android:layout_marginEnd="@dimen/product_item_card_view_layout_marginEnd"
+    android:layout_marginTop="@dimen/product_item_card_view_layout_marginTop"
+    android:layout_marginBottom="@dimen/product_item_card_view_layout_marginBottom">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView_my_fares_profile"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_user"
+            android:background="@color/black"
+            card_view:civ_border_color="@color/dirtyWhite"
+            card_view:civ_border_width="1dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_my_fares_buyer_name"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="12dp"
+            card_view:layout_constraintStart_toEndOf="@+id/imageView_my_fares_profile"
+            card_view:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/arrow_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
+            android:background="@color/white"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView_my_fares_product_image"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="@dimen/product_item_iv_1_layout_marginStart"
+            android:layout_marginTop="18dp"
+            card_view:boxStrokeColor="@color/white"
+            android:scaleType="centerCrop"
+            android:src="@drawable/prune"
+            card_view:civ_border_color="@color/dirtyWhite"
+            card_view:civ_border_width="1dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/imageView_my_fares_profile" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:id="@+id/my_fares_order_states"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="5dp"
+            card_view:boxStrokeWidth="0dp"
+            card_view:boxStrokeColor="@color/white"
+            android:visibility="gone"
+            card_view:layout_constraintStart_toEndOf="@+id/imageView_my_fares_product_image"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_my_fares_buyer_name" >
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/incoming_order"
+                android:textColor="@color/turquoise"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_my_fares_order_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/turquoise"
+            android:textSize="16sp"
+            android:visibility="gone"
+            card_view:layout_constraintStart_toEndOf="@+id/imageView_my_fares_product_image"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_my_fares_buyer_name" />
+
+        <TextView
+            android:id="@+id/tv_my_fares_product_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="45dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            card_view:layout_constraintStart_toEndOf="@+id/imageView_my_fares_product_image"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_my_fares_buyer_name" />
+
+        <TextView
+            android:id="@+id/textView_my_fares_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="110dp"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toEndOf="@+id/imageView_my_fares_product_image"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_my_fares_product_title" />
+
+        <TextView
+            android:id="@+id/textView_my_fares_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:textColor="@color/black"
+            android:padding="2dp"
+            android:textSize="@dimen/product_item_tv2_textSize"
+            card_view:layout_constraintStart_toEndOf="@+id/imageView_my_fares_product_image"
+            card_view:layout_constraintTop_toBottomOf="@+id/textView_my_fares_description" />
+
+        <TextView
+            android:id="@+id/textView_my_fares_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/black"
+            android:padding="2dp"
+            android:textSize="@dimen/product_item_tv2_textSize"
+            card_view:layout_constraintStart_toEndOf="@+id/textView_my_fares_amount"
+            card_view:layout_constraintTop_toBottomOf="@+id/textView_my_fares_description" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/my_fares_order_state_image"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_accept_order"
+            card_view:civ_border_color="@color/dirtyWhite"
+            card_view:civ_border_width="1dp"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
