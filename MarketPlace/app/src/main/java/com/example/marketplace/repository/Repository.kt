@@ -2,6 +2,9 @@ package com.example.marketplace.repository
 
 import com.example.marketplace.api.RetrofitInstance
 import com.example.marketplace.model.*
+import retrofit2.http.Body
+import retrofit2.http.Header
+import retrofit2.http.Query
 
 class Repository {
     suspend fun login(request: LoginRequest): LoginResponse {
@@ -36,4 +39,11 @@ class Repository {
         return RetrofitInstance.api.getOrders(token)
     }
 
+    suspend fun removeProduct(token : String, productId : String) : RemoveProductResponse {
+        return RetrofitInstance.api.removeProduct(token, productId)
+    }
+
+    suspend fun updateOrder(token : String, orderId : String, updateOrderRequest: UpdateOrderRequest) : UpdateOrderResponse {
+        return RetrofitInstance.api.updateOrder(token, orderId, updateOrderRequest)
+    }
 }

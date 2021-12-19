@@ -1,10 +1,12 @@
 package com.example.marketplace.fragment
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -61,8 +63,17 @@ class MyMarketFragment : Fragment(), MyMarketDataAdapter.OnItemClickListener, My
         findNavController().navigate(R.id.action_myMarketFragment_to_productDetailFragment)
     }
 
-    override fun onItemLongClick(position: Int) {
-        //todo - delete product
+    override fun onItemLongClick(productId : String) {
+        AlertDialog.Builder(context)
+            .setTitle("Delete")
+            .setMessage("Are you sure you want to delete this product?")
+            .setPositiveButton("Yes") { _, _ -> listViewModel.removeProduct(productId)
+                                                    adapter.setData(listViewModel.products.value!!.filter { it.username == loginViewModel.user.value!!.username } as ArrayList<Product>)
+                                                    adapter.notifyDataSetChanged()
+                                                    Toast.makeText(activity, "Product successfully removed!", Toast.LENGTH_SHORT).show() }
+            .setNegativeButton("No"){ _, _ ->}
+            .create()
+            .show()
     }
 
     private fun setListeners(){

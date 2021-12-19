@@ -24,16 +24,6 @@ data class Product(val rating: Double,
 @JsonClass(generateAdapter = true)
 data class ProductResponse(val item_count: Int, val products: List<Product>, val timestamp: Long)
 
-data class NewProduct(//val uploadImages: List<Image>,
-                      val title: String,
-                      val description: String,
-                      val price_per_unit: String,
-                      val units: String,
-                      val is_active: Boolean,
-                      val rating: Double,
-                      val amount_type: String,
-                      val price_type: String)
-
 @JsonClass(generateAdapter = true)
 data class AddProductResponse(val creation: String,
                               val product_id: String,
@@ -58,3 +48,8 @@ data class UpdateProduct( val price_per_unit: String,
 
 @JsonClass(generateAdapter = true)
 data class UpdateProductResponse(val updated_item : Product)
+
+@JsonClass(generateAdapter = true)
+data class RemoveProductResponse( val message: String,
+                          val product_id: String,
+                          val deletion_time : String)

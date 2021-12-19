@@ -10,7 +10,15 @@ object Constants {
         const val UPDATE_PRODUCT = "products/update"
         const val ADD_ORDER = "orders/add"
         const val GET_ORDERS = "orders"
+        const val REMOVE_PRODUCTS = "products/remove"
+        const val UPDATE_ORDER = "orders/update"
 
         const val ACTIVE = "Active"
         const val INACTIVE = "Inactive"
+        const val INCOMING = "INCOMING"
+        const val ACCEPTED = "ACCEPTED"
+        const val DECLINED = "DECLINED"
+        const val DELIVERING = "DELIVERING"
+        const val DELIVERED = "DELIVERED"
+        const val OPEN = "OPEN"
 }

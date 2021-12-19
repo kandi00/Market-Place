@@ -49,4 +49,13 @@ interface MarketApi {
 
     @GET(Constants.GET_ORDERS)
     suspend fun getOrders(@Header("token") token: String): OrderResponse
+
+    @POST(Constants.REMOVE_PRODUCTS)
+    suspend fun removeProduct(@Header("token") token : String,
+                              @Query("product_id") productId : String) : RemoveProductResponse
+
+    @POST(Constants.UPDATE_ORDER)
+    suspend fun updateOrder(@Header("token") token : String,
+                            @Query("order_id") orderId : String,
+                            @Body updateOrderRequest : UpdateOrderRequest) : UpdateOrderResponse
 }

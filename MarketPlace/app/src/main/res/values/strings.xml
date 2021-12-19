@@ -44,6 +44,10 @@
     <string name="ongoing_sales">Ongoing sales</string>
     <string name="ongoing_orders">Ongoing Orders</string>
     <string name="incoming_order">Incoming order</string>
+    <string name="declined_order">Declined order</string>
+    <string name="delivering_order">Delivering order</string>
+    <string name="delivered_order">Delivered order</string>
+    <string name="accepted_order">Accepted order</string>
 
     <string-array name="currencies">
         <item>RON</item>

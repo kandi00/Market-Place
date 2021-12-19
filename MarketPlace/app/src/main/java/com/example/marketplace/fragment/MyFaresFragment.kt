@@ -50,7 +50,7 @@ class MyFaresFragment : Fragment(), MyFaresDataAdapter.OnItemClickListener {
 
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     if(tab?.position == 0){
-                        adapter.setData(listViewModel.orders.value!!.filter { it.owner_username == "\"testUser\"" } as ArrayList<Order>, true)
+                        adapter.setData(listViewModel.orders.value!!.filter { it.owner_username.trim{it == '\"'} == loginViewModel.user.value!!.username } as ArrayList<Order>, true)
                         adapter.notifyDataSetChanged()
                     } else {
                         adapter.setData(listViewModel.orders.value!!.filter { it.username == loginViewModel.user.value!!.username } as ArrayList<Order>, false)
@@ -71,13 +71,17 @@ class MyFaresFragment : Fragment(), MyFaresDataAdapter.OnItemClickListener {
     }
 
     private fun setupRecyclerView(){
-        adapter = MyFaresDataAdapter(listViewModel.orders.value!!.filter { it.owner_username == "\"testUser\""} as ArrayList<Order>, true, this.requireContext(), this)
+        adapter = MyFaresDataAdapter(listViewModel.orders.value!!.filter { it.owner_username.trim{it == '\"'} ==  loginViewModel.user.value!!.username} as ArrayList<Order>, true, this.requireContext(), this)
         recyclerView.adapter = adapter
     }
 
     override fun onItemClick(orderId: String) {
         listViewModel.orderId = orderId
         findNavController().navigate(R.id.action_myFaresFragment_to_orderDetailFragment)
+    }
+
+    override fun onUpdateOrderClick(orderId: String, status: String) {
+        listViewModel.updateOrder(orderId, status)
     }
 
     override fun onDestroyView() {

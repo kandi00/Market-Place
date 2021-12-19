@@ -28,7 +28,7 @@ data class OrderResponse(val item_count: Int, val orders: List<Order>, val times
 @JsonClass(generateAdapter = true)
 data class Order(val order_id : String,
                  val username : String,
-                 val status : String,
+                 var status : String,
                  val owner_username : String,
                  val price_per_unit: String,
                  val units : String,
@@ -37,3 +37,19 @@ data class Order(val order_id : String,
                  val images : List<Image>,
                  val creation_time : Long,
                  val messages : List<String>)
+
+@JsonClass(generateAdapter = true)
+data class UpdateOrderResponse( val timestamp : UpdateOrder)
+
+@JsonClass(generateAdapter = true)
+data class UpdateOrderRequest( val status : String)
+
+@JsonClass(generateAdapter = true)
+data class UpdateOrder(val order_id : String,
+                       val username : String,
+                       val price_per_unit: String,
+                       val units : String,
+                       val description : String,
+                       val title : String,
+                       val status : String,
+                       val creation_time : Long)

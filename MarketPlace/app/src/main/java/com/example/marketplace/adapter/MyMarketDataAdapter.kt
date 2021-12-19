@@ -26,7 +26,7 @@ class MyMarketDataAdapter(
     }
 
     interface OnItemLongClickListener{
-        fun onItemLongClick(position: Int)
+        fun onItemLongClick(productId: String)
     }
 
     // 1. user defined ViewHolder type - Embedded class!
@@ -51,7 +51,7 @@ class MyMarketDataAdapter(
 
         override fun onLongClick(p0: View?): Boolean {
             val currentPosition = this.adapterPosition
-            listener_.onItemLongClick(currentPosition)
+            listener_.onItemLongClick(list[currentPosition].product_id)
             return true
         }
     }
