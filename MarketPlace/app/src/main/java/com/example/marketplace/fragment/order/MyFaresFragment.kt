@@ -1,7 +1,6 @@
-package com.example.marketplace.fragment
+package com.example.marketplace.fragment.order
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -45,7 +44,7 @@ class MyFaresFragment : Fragment(), MyFaresDataAdapter.OnItemClickListener {
         tabLayout = binding.myFaresTabLayout
         setupRecyclerView()
 
-        listViewModel.products.observe(viewLifecycleOwner){
+        //listViewModel.orders.observe(viewLifecycleOwner){
             tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
 
                 override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -66,7 +65,7 @@ class MyFaresFragment : Fragment(), MyFaresDataAdapter.OnItemClickListener {
                     // Handle tab unselect
                 }
             })
-        }
+        //}
         return fragment
     }
 
@@ -76,7 +75,7 @@ class MyFaresFragment : Fragment(), MyFaresDataAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(orderId: String) {
-        listViewModel.orderId = orderId
+        listViewModel.currentOrderId = orderId
         findNavController().navigate(R.id.action_myFaresFragment_to_orderDetailFragment)
     }
 

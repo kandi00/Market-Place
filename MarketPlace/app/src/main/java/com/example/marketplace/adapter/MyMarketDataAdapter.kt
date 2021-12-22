@@ -22,7 +22,7 @@ class MyMarketDataAdapter(
 ) : RecyclerView.Adapter<MyMarketDataAdapter.MyMarketProductViewHolder>() {
 
     interface OnItemClickListener{
-        fun onItemClick(position: Int)
+        fun onItemClick(productId: String)
     }
 
     interface OnItemLongClickListener{
@@ -46,7 +46,7 @@ class MyMarketDataAdapter(
         }
         override fun onClick(p0: View?) {
             val currentPosition = this.adapterPosition
-            listener.onItemClick(currentPosition)
+            listener.onItemClick(list[currentPosition].product_id)
         }
 
         override fun onLongClick(p0: View?): Boolean {

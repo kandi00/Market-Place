@@ -1,6 +1,7 @@
 package com.example.marketplace.model
 
 import com.squareup.moshi.JsonClass
+import retrofit2.http.Part
 
 data class User(var username: String="", var password: String="", var email: String="", var phone_number: String="")
 
@@ -49,3 +50,18 @@ data class UpdatedUserInfo (
 
 @JsonClass(generateAdapter = true)
 data class UpdateUserDataResponse(val code : Int, val updatedData : UpdatedUserInfo, val timestamp: Long)
+
+@JsonClass(generateAdapter = true)
+data class ResetPasswordRequest(val username : String, val email : String)
+
+@JsonClass(generateAdapter = true)
+data class ResetPasswordResponse(val code : String, val message : String, val timestamp : Long)
+
+@JsonClass(generateAdapter = true)
+data class RegisterRequest(val username : String, val email : String, val password : String, val  phone_number: Long)
+
+@JsonClass(generateAdapter = true)
+data class RegisterResponse(val code : Int, val message : String, val creation_time : Long)
+
+@JsonClass(generateAdapter = true)
+data class ActivateUserResponse(val code : Int, val message : String, val timestamp : Long)

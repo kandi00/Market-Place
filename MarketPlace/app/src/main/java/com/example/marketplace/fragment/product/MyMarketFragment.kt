@@ -1,4 +1,4 @@
-package com.example.marketplace.fragment
+package com.example.marketplace.fragment.product
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -55,11 +55,9 @@ class MyMarketFragment : Fragment(), MyMarketDataAdapter.OnItemClickListener, My
         recyclerView.adapter = adapter
     }
 
-    override fun onItemClick(position: Int) {
-        /** Get the index of product in original product list
-        products.indexOf(myProduct[position]) **/
-        val pos = listViewModel.products.value!!.indexOf(listViewModel.products.value!!.filter { it.username == loginViewModel.user.value!!.username }[position])
-        listViewModel.currentProductPosition = pos
+    override fun onItemClick(productId: String) {
+        /** Set the id of selected product in original product list **/
+        listViewModel.currentProductId = productId
         findNavController().navigate(R.id.action_myMarketFragment_to_productDetailFragment)
     }
 
@@ -68,8 +66,6 @@ class MyMarketFragment : Fragment(), MyMarketDataAdapter.OnItemClickListener, My
             .setTitle("Delete")
             .setMessage("Are you sure you want to delete this product?")
             .setPositiveButton("Yes") { _, _ -> listViewModel.removeProduct(productId)
-                                                    adapter.setData(listViewModel.products.value!!.filter { it.username == loginViewModel.user.value!!.username } as ArrayList<Product>)
-                                                    adapter.notifyDataSetChanged()
                                                     Toast.makeText(activity, "Product successfully removed!", Toast.LENGTH_SHORT).show() }
             .setNegativeButton("No"){ _, _ ->}
             .create()

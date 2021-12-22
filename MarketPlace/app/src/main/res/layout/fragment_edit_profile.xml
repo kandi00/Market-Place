@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bDark"
-    tools:context=".fragment.EditProfileFragment">
+    tools:context=".fragment.profile.EditProfileFragment">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_user_edit_profile_picture"
@@ -37,7 +37,7 @@
         android:layout_marginTop="25dp"
         android:background="@drawable/boarder"
         android:ems="10"
-        android:hint="@string/user_name"
+        android:hint="@string/username"
         android:inputType="textPersonName"
         android:padding="8dp"
         android:textColor="@color/dirtyWhite"
@@ -54,6 +54,7 @@
         android:background="@drawable/boarder"
         android:ems="10"
         android:hint="@string/phone_number"
+        android:inputType="phone"
         android:padding="8dp"
         android:textColor="@color/dirtyWhite"
         android:textColorHint="@color/hintGrey"

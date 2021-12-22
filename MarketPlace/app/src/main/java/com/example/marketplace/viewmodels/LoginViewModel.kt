@@ -1,19 +1,19 @@
 package com.example.marketplace.viewmodels
 
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.marketplace.MyApplication
-import com.example.marketplace.model.LoginRequest
-import com.example.marketplace.model.UpdateUserDataRequest
-import com.example.marketplace.model.User
+import com.example.marketplace.model.*
 import com.example.marketplace.repository.Repository
 import kotlinx.coroutines.launch
 
-class LoginViewModel(val context: Context, val repository: Repository) : ViewModel() {
+class LoginViewModel(val repository: Repository) : ViewModel() {
+    private val tag = "LoginViewModel"
     var token: MutableLiveData<String> = MutableLiveData()
+    val registrationCode: MutableLiveData<Int> = MutableLiveData()
+    val activation: MutableLiveData<Boolean> = MutableLiveData()
     var user = MutableLiveData<User>()
     var randomUser = User()
 
@@ -24,41 +24,73 @@ class LoginViewModel(val context: Context, val repository: Repository) : ViewMod
     suspend fun login() {
         val request =
             LoginRequest(username = user.value!!.username, password = user.value!!.password)
-        try {
-            val result = repository.login(request)
-            MyApplication.token = result.token
-            token.value = result.token
-            Log.d("xxx", "MyApplication - token:  ${MyApplication.token}")
-            user.value!!.email = result.email
-            user.value!!.phone_number = result.phone_number.toString()
-            Log.i("user data", user.value.toString())
-        } catch (e: Exception) {
-            Log.d("xxx", "LoginViewModel - exception: $e")
+        val result = repository.login(request)
+        MyApplication.token = result.token
+        token.value = result.token
+        Log.d(tag, "MyApplication - token:  ${MyApplication.token}")
+        user.value!!.email = result.email
+        user.value!!.phone_number = result.phone_number.toString()
+        Log.i(tag, user.value.toString())
+    }
+
+    suspend fun register(username: String, email: String, password: String, phone_number: Long) {
+        val result = repository.register(RegisterRequest(username, email, password, phone_number))
+        registrationCode.value = result.code
+        Log.i(tag, result.message)
+    }
+
+    fun activate(username: String) {
+        viewModelScope.launch {
+            try {
+                repository.activate(username)
+                activation.value = true
+                Log.i(tag, "value:  ${activation.value}")
+            } catch (e: Exception) {
+                activation.value = false
+                Log.i(tag, "value:  ${activation.value}")
+                Log.i(tag, "activate - exception: $e")
+            }
         }
     }
 
-    fun getUserInfo(userName : String) {
+    fun resetPassword() {
+        val request =
+            ResetPasswordRequest(username = user.value!!.username, email = user.value!!.email)
+        viewModelScope.launch {
+            try {
+                val result = repository.resetPassword(request)
+                Log.i(tag, result.message)
+            } catch (e: Exception) {
+                Log.d(tag, "resetPassword - exception: $e")
+            }
+        }
+    }
+
+    fun getUserInfo(userName: String) {
         viewModelScope.launch {
             try {
                 val result = repository.getUserInfo(userName)
                 randomUser.username = result.data[0].username
                 randomUser.phone_number = result.data[0].phone_number.toString()
                 randomUser.email = result.data[0].email
-                Log.d("xxx", "LoginViewModel - getUserInfo:  ${result.code}")
-            }catch(e: Exception){
-                Log.d("xxx", "LoginViewModel exception: $e")
+                Log.d(tag, "LoginViewModel - getUserInfo:  ${result.code}")
+            } catch (e: Exception) {
+                Log.d(tag, "LoginViewModel exception: $e")
             }
         }
     }
 
-    fun updateUserData(userName : String, phoneNumber : String){
+    fun updateUserData(userName: String, phoneNumber: String) {
         viewModelScope.launch {
-            val result = repository.updateUserData(MyApplication.token, UpdateUserDataRequest(phoneNumber.toInt(), userName))
+            val result = repository.updateUserData(
+                MyApplication.token,
+                UpdateUserDataRequest(phoneNumber.toInt(), userName)
+            )
             MyApplication.token = result.updatedData.token
             user.value!!.email = result.updatedData.email
             user.value!!.username = result.updatedData.username
             user.value!!.phone_number = result.updatedData.phone_number.toString()
-            Log.d("xxx", "LoginViewModel - updateUserData:  ${result.code} ${result.updatedData}")
+            Log.d(tag, "LoginViewModel - updateUserData:  ${result.code} ${result.updatedData}")
         }
     }
 }

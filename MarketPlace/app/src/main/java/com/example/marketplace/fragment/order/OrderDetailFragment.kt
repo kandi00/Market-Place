@@ -1,4 +1,4 @@
-package com.example.marketplace.fragment
+package com.example.marketplace.fragment.order
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -60,12 +60,12 @@ class OrderDetailFragment : Fragment() {
         productTitle.text = currentOrder.title
         sellerName.text = getString(R.string.seller, currentOrder.owner_username)
         status.text = currentOrder.status
-        pricePerAmount.text = currentOrder.price_per_unit
-        amount.text = currentOrder.units
+        pricePerAmount.text = getString(R.string.price, currentOrder.price_per_unit)
+        amount.text = getString(R.string.amount, currentOrder.units)
         try{
-            totalPrice.text = (currentOrder.price_per_unit.toInt() * currentOrder.units.toInt()).toString()}
+            totalPrice.text = getString(R.string.total_price, (currentOrder.price_per_unit.trim{it == '\"'}.toInt() * currentOrder.units.trim{it == '\"'}.toInt()).toString())}
         catch(e : Exception){
-            totalPrice.text = currentOrder.units
+            totalPrice.text = getString(R.string.total_price, currentOrder.price_per_unit)
         }
         description.text = currentOrder.description
     }

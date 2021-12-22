@@ -1,4 +1,4 @@
-package com.example.marketplace.fragment
+package com.example.marketplace.fragment.profile
 
 import android.os.Bundle
 import android.util.Log
@@ -41,7 +41,6 @@ class EditProfileFragment : Fragment() {
 
         initializeElements()
         loginViewModel.user.observe(viewLifecycleOwner){
-            Log.i("modify", "modify")
             setValues()
         }
         setListeners()

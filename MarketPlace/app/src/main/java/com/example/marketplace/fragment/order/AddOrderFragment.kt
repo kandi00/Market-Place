@@ -1,4 +1,4 @@
-package com.example.marketplace.fragment
+package com.example.marketplace.fragment.order
 
 import android.os.Bundle
 import android.util.Log
@@ -103,7 +103,7 @@ class AddOrderFragment : Fragment() {
                 amount.helperText = ""
                 flag = true
             } catch (e : Exception){
-                amount.helperText = "Give a valid number!"
+                amount.helperText = getString(R.string.add_valid_number)
                 totalPrice.text = getString(R.string.total_price, "0")
                 flag = false
             }

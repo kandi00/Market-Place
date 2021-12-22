@@ -1,4 +1,4 @@
-package com.example.marketplace.fragment
+package com.example.marketplace.fragment.product
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -52,13 +52,13 @@ class TimelineFragment : Fragment(), TimelineDataAdapter.OnItemClickListener {
         recyclerView.adapter = adapter
     }
 
-    override fun onItemClick(position: Int) {
-        listViewModel.currentProductPosition = position
+    override fun onItemClick(productId: String) {
+        listViewModel.currentProductId = productId
         findNavController().navigate(R.id.action_timelineFragment_to_productDetailFragment)
     }
 
-    override fun onOrderNowButtonClick(position: Int) {
-        listViewModel.currentProductPosition = position
+    override fun onOrderNowButtonClick(productId: String) {
+        listViewModel.currentProductId = productId
         findNavController().navigate(R.id.action_timelineFragment_to_addOrderDetailFragment)
     }
 

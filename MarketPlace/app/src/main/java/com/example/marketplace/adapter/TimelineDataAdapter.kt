@@ -20,8 +20,8 @@ class TimelineDataAdapter(
 ) : RecyclerView.Adapter<TimelineDataAdapter.TimelineProductViewHolder>() {
 
     interface OnItemClickListener{
-        fun onItemClick(position: Int)
-        fun onOrderNowButtonClick(position : Int)
+        fun onItemClick(productId: String)
+        fun onOrderNowButtonClick(productId : String)
     }
 
     // 1. user defined ViewHolder type - Embedded class!
@@ -41,8 +41,8 @@ class TimelineDataAdapter(
         override fun onClick(v: View?) {
             val currentPosition = this.adapterPosition
             when(v?.id){
-                orderNowButton.id -> listener.onOrderNowButtonClick(currentPosition)
-                else -> listener.onItemClick(currentPosition)
+                orderNowButton.id -> listener.onOrderNowButtonClick(list[currentPosition].product_id)
+                else -> listener.onItemClick(list[currentPosition].product_id)
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.example.marketplace.fragment
+package com.example.marketplace.fragment.product
 
 import android.os.Bundle
 import android.util.Log
@@ -7,14 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
-import com.example.marketplace.databinding.FragmentAddDetailMarketItemBinding
-import com.example.marketplace.model.Product
+import com.example.marketplace.databinding.FragmentAddMarketItemBinding
 import com.google.android.material.snackbar.Snackbar
 
-class AddMarketItemFragment : BaseMarketItemFragment<FragmentAddDetailMarketItemBinding>() {
+class AddMarketItemFragment : BaseMarketItemFragment<FragmentAddMarketItemBinding>() {
 
     override fun onCreateViewBinding(inflater: LayoutInflater, container: ViewGroup?) {
-        _binding = FragmentAddDetailMarketItemBinding.inflate(inflater, container, false)
+        _binding = FragmentAddMarketItemBinding.inflate(inflater, container, false)
     }
 
     private lateinit var productDetailUploadImage : ImageView
@@ -44,7 +43,7 @@ class AddMarketItemFragment : BaseMarketItemFragment<FragmentAddDetailMarketItem
 
         button.setOnClickListener{
 
-            checkData()
+            checkInputData()
 
             if(flag) {
                 try {

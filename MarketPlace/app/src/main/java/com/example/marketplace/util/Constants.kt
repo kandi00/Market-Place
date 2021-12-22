@@ -12,6 +12,9 @@ object Constants {
         const val GET_ORDERS = "orders"
         const val REMOVE_PRODUCTS = "products/remove"
         const val UPDATE_ORDER = "orders/update"
+        const val RESET_PASSWORD = "/user/reset"
+        const val REGISTER = "/user/register"
+        const val ACTIVATE = "/user/activate"
 
         const val ACTIVE = "Active"
         const val INACTIVE = "Inactive"

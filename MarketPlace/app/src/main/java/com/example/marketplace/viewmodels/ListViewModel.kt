@@ -1,8 +1,6 @@
 package com.example.marketplace.viewmodels
 
-import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
 import com.example.marketplace.MyApplication
 import com.example.marketplace.model.*
@@ -13,11 +11,10 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
     var tag = "ListViewModel"
     var products: MutableLiveData<ArrayList<Product>> = MutableLiveData()
     var orders: MutableLiveData<ArrayList<Order>> = MutableLiveData()
-    var currentProductPosition: Int = 0
-    var orderId: String = ""
+    var currentProductId: String = ""
+    var currentOrderId: String = ""
 
     init {
-        Log.d("xxx", "ListViewModel constructor - Token: ${MyApplication.token}")
         getProducts()
         getOrders()
     }
@@ -26,7 +23,7 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
         viewModelScope.launch {
             try {
                 val result =
-                    repository.getProducts(MyApplication.token, 100)
+                    repository.getProducts(MyApplication.token, 200)
                 products.value = result.products as ArrayList<Product>
                 Log.d(tag, "ListViewModel - #products:  ${result.item_count}")
             } catch (e: Exception) {
@@ -36,12 +33,7 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
     }
 
     fun getCurrentProduct(): Product {
-        Log.i("pos", products.value.toString())
-        return products.value?.get(currentProductPosition)!!
-    }
-
-    fun getCurrentOrder(): Order {
-        return orders.value?.filter { it.order_id == orderId }!![0]
+        return products.value?.filter { it.product_id == currentProductId }!![0]
     }
 
     fun addProduct(
@@ -106,6 +98,36 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
         }
     }
 
+    fun removeProduct(productId: String) {
+        viewModelScope.launch {
+            try {
+                products.value!!.remove(products.value!!.filter { it.product_id == productId }[0])
+                Log.i("product list", products.value.toString())
+                val result = repository.removeProduct(MyApplication.token, productId)
+                Log.i(tag, "Product removal message:  ${result.message}")
+            } catch (e: Exception) {
+                Log.d(tag, "ListViewModel remove product exception: $e")
+            }
+        }
+    }
+
+    private fun getOrders() {
+        orders.value = arrayListOf()
+        viewModelScope.launch {
+            try {
+                val result = repository.getOrders(MyApplication.token, 200)
+                orders.value = result.orders as ArrayList<Order>
+                Log.d(tag, "orders:  ${result.orders}")
+            } catch (e: Exception) {
+                Log.d(tag, "ListViewModel orders exception: $e")
+            }
+        }
+    }
+
+    fun getCurrentOrder(): Order {
+        return orders.value?.filter { it.order_id == currentOrderId }!![0]
+    }
+
     fun addOrder(addOrder: AddOrder) {
         viewModelScope.launch {
             val result = repository.addOrder(MyApplication.token, addOrder)
@@ -121,35 +143,9 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
                     result.description,
                     result.title,
                     result.images,
-                    result.creation_time,
-                    mutableListOf()
+                    result.creation_time
                 )
             )
-        }
-    }
-
-    private fun getOrders() {
-        viewModelScope.launch {
-            try {
-                val result = repository.getOrders(MyApplication.token)
-                orders.value = result.orders as ArrayList<Order>
-                Log.d(tag, "orders:  ${result.orders}")
-            } catch (e: Exception) {
-                Log.d(tag, "ListViewModel orders exception: $e")
-            }
-        }
-    }
-
-    fun removeProduct(productId: String) {
-        viewModelScope.launch {
-            try {
-                products.value!!.remove(products.value!!.filter { it.product_id == productId }[0])
-                Log.i("product list", products.value.toString())
-                val result = repository.removeProduct(MyApplication.token, productId)
-                Log.i(tag, "Product removal message:  ${result.message}")
-            } catch (e: Exception) {
-                Log.d(tag, "ListViewModel remove product exception: $e")
-            }
         }
     }
 

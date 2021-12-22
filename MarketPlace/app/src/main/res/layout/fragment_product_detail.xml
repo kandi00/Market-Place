@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="60dp"
-    tools:context=".fragment.ProductDetailFragment">
+    tools:context=".fragment.product.ProductDetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/full_white"
-        tools:context=".fragment.ProductDetailFragment">
+        tools:context=".fragment.product.ProductDetailFragment">
 
         <ImageView
             android:id="@+id/iv_image_of_the_product"

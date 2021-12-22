@@ -35,8 +35,7 @@ data class Order(val order_id : String,
                  val description : String,
                  val title : String,
                  val images : List<Image>,
-                 val creation_time : Long,
-                 val messages : List<String>)
+                 val creation_time : Long)
 
 @JsonClass(generateAdapter = true)
 data class UpdateOrderResponse( val timestamp : UpdateOrder)

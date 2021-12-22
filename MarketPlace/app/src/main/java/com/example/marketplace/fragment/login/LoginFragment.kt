@@ -1,4 +1,4 @@
-package com.example.marketplace.fragment
+package com.example.marketplace.fragment.login
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -16,24 +16,26 @@ import com.example.marketplace.databinding.FragmentLoginBinding
 import com.example.marketplace.repository.Repository
 import com.example.marketplace.viewmodels.LoginViewModel
 import com.example.marketplace.viewmodels.LoginViewModelFactory
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-    private lateinit var fragment : View
+    private lateinit var fragment: View
     private lateinit var loginViewModel: LoginViewModel
-    private lateinit var editTextLoginName : EditText
-    private lateinit var editTextLoginPassword : EditText
-    private lateinit var loginButton : Button
-    private lateinit var signUpButton : Button
-    private lateinit var forgotPassword : TextView
+    private lateinit var editTextLoginName: EditText
+    private lateinit var editTextLoginPassword: EditText
+    private lateinit var loginButton: Button
+    private lateinit var signUpButton: Button
+    private lateinit var forgotPassword: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val factory = LoginViewModelFactory(this.requireContext(), Repository())
-        loginViewModel = ViewModelProvider(requireActivity(), factory).get(LoginViewModel::class.java)
+        val factory = LoginViewModelFactory(Repository())
+        loginViewModel =
+            ViewModelProvider(requireActivity(), factory).get(LoginViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -46,14 +48,13 @@ class LoginFragment : Fragment() {
         initializeElements()
         setListeners()
 
-        loginViewModel.token.observe(viewLifecycleOwner){
-            //Log.d("xxx", "navigate to list")
+        loginViewModel.token.observe(viewLifecycleOwner) {
             findNavController().navigate(R.id.action_loginFragment_to_timelineFragment)
         }
         return fragment
     }
 
-    private fun initializeElements(){
+    private fun initializeElements() {
         editTextLoginName = binding.edittextNameLoginFragment
         editTextLoginPassword = binding.edittextPasswordLoginFragment
         loginButton = binding.buttonLoginFragment
@@ -61,30 +62,54 @@ class LoginFragment : Fragment() {
         forgotPassword = binding.tvClickHere
     }
 
-    private fun setListeners(){
+    private fun setListeners() {
         loginButton.setOnClickListener {
-            loginViewModel.user.value.let {
-                if (it != null) {
-                    //it.username = editTextLoginName.text.toString()
-                    it.username="testUser"
+            if (validateInputData()) {
+                loginViewModel.user.value.let {
+                    if (it != null) {
+                        it.username = editTextLoginName.text.toString()
+                        it.username = "testUser"
+                    }
+                    if (it != null) {
+                        it.password = editTextLoginPassword.text.toString()
+                        it.password = "C97jl0utAucTURZZzKwT"
+                    }
                 }
-                if (it != null) {
-//                    it.password = editTextLoginPassword.text.toString()
-                    it.password = "testuser123"
+                lifecycleScope.launch {
+                    try {
+                        loginViewModel.login()
+                    } catch (e: Exception) {
+                        Snackbar.make(binding.root,"Incorrect user name or password!", Snackbar.LENGTH_LONG)
+                                .show()
+                    }
                 }
-            }
-            lifecycleScope.launch {
-                loginViewModel.login()
             }
         }
 
-        signUpButton.setOnClickListener{
+        signUpButton.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
-        forgotPassword.setOnClickListener{
+        forgotPassword.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
         }
+    }
+
+    private fun validateInputData(): Boolean {
+        editTextLoginName.error = null
+        editTextLoginPassword.error = null
+
+        when {
+            editTextLoginName.text.toString().isEmpty() -> {
+                editTextLoginName.error = getString(R.string.invalid_user_name)
+                return false
+            }
+            editTextLoginPassword.text.toString().isEmpty() -> {
+                editTextLoginPassword.error = getString(R.string.invalid_password)
+                return false
+            }
+        }
+        return true
     }
 
     override fun onDestroyView() {

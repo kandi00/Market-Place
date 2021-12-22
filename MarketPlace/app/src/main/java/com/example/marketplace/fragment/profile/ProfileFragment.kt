@@ -1,4 +1,4 @@
-package com.example.marketplace.fragment
+package com.example.marketplace.fragment.profile
 
 import android.content.Intent
 import android.net.Uri

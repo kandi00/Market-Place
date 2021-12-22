@@ -1,4 +1,4 @@
-package com.example.marketplace.fragment
+package com.example.marketplace.fragment.product
 
 import android.os.Bundle
 import android.util.Log
@@ -11,9 +11,6 @@ import com.example.marketplace.util.Constants
 import com.google.android.material.snackbar.Snackbar
 
 class EditDetailMarketItemFragment : BaseMarketItemFragment<FragmentEditDetailMarketItemBinding>() {
-
-//    private var _binding: FragmentEditDetailMarketItemBinding? = null
-//    private val binding get() = _binding!!
     private var savedView: View? = null
 
     override fun onCreateViewBinding(inflater: LayoutInflater, container: ViewGroup?) {
@@ -26,23 +23,6 @@ class EditDetailMarketItemFragment : BaseMarketItemFragment<FragmentEditDetailMa
         setUIElementsValues()
     }
 
-//    override fun onCreateView(
-//        inflater: LayoutInflater,
-//        container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        Log.i("edit start", "onCreateView")
-//        Log.i("data", listViewModel.getCurrentProduct().toString())
-//        if(savedView == null){
-//            savedView = super.onCreateView(inflater, container, savedInstanceState)
-//        }
-//        _binding = FragmentEditDetailMarketItemBinding.inflate(inflater, container, false)
-//        setListeners()
-//        setUIElementsValues()
-//        Log.i("edit end", "onCreateView")
-//        return savedView
-//    }
-
     private fun setUIElementsValues(){
         val currentProduct = listViewModel.getCurrentProduct()
         switch.isChecked = currentProduct.is_active
@@ -52,7 +32,6 @@ class EditDetailMarketItemFragment : BaseMarketItemFragment<FragmentEditDetailMa
             switch.text = Constants.INACTIVE
         }
 
-        Log.i("data", currentProduct.title)
         productTitle.setText(currentProduct.title)
         autoCompleteTextView1.setText(currentProduct.price_type)
         autoCompleteTextView2.setText(currentProduct.amount_type)
@@ -68,7 +47,7 @@ class EditDetailMarketItemFragment : BaseMarketItemFragment<FragmentEditDetailMa
 
         button.setOnClickListener{
 
-           checkData()
+           checkInputData()
 
             if(flag) {
                 try{
@@ -82,7 +61,7 @@ class EditDetailMarketItemFragment : BaseMarketItemFragment<FragmentEditDetailMa
                     Snackbar.make(requireView(), "Product updated successfully", Snackbar.LENGTH_LONG)
                             .show()
                 } catch(e : Exception) {
-                    Log.d("xxx", "Exception while updating product: $e")
+                    Log.d("EditMarketItem", "Exception while updating product: $e")
                 }
             }
 

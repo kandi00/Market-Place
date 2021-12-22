@@ -1,4 +1,4 @@
-package com.example.marketplace.fragment
+package com.example.marketplace.fragment.product
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment

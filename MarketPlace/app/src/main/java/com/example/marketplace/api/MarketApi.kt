@@ -6,17 +6,30 @@ import com.squareup.moshi.JsonClass
 import retrofit2.http.*
 
 interface MarketApi {
+    /** login */
     @POST(Constants.LOGIN_URL)
     suspend fun login(@Body request: LoginRequest): LoginResponse
 
-    @GET(Constants.GET_PRODUCT_URL)
-    suspend fun getProducts(@Header("token") token: String, @Header("limit") limit : Int): ProductResponse
+    @POST(Constants.RESET_PASSWORD)
+    suspend fun resetPassword(@Body resetPasswordRequest : ResetPasswordRequest)  : ResetPasswordResponse
 
+    /** register */
+    @POST(Constants.REGISTER)
+    suspend fun register(@Body registerRequest : RegisterRequest): RegisterResponse
+
+    @GET(Constants.ACTIVATE)
+    suspend fun activate(@Query("username") userName : String)
+
+    /** manage users */
     @GET(Constants.GET_USER_INFO)
     suspend fun getUserInfo(@Header("username") userName : String) : UserInfoResponse
 
     @POST(Constants.UPDATE_USER_DATA)
     suspend fun updateUserData(@Header("token") token: String, @Body updateUserData : UpdateUserDataRequest) : UpdateUserDataResponse
+
+    /** manage products */
+    @GET(Constants.GET_PRODUCT_URL)
+    suspend fun getProducts(@Header("token") token: String, @Header("limit") limit : Int): ProductResponse
 
     @Multipart
     @JsonClass(generateAdapter = true)
@@ -36,6 +49,14 @@ interface MarketApi {
                               @Query("product_id") productId : String,
                               @Body updateProduct : UpdateProduct) : UpdateProductResponse
 
+    @POST(Constants.REMOVE_PRODUCTS)
+    suspend fun removeProduct(@Header("token") token : String,
+                              @Query("product_id") productId : String) : RemoveProductResponse
+
+    /** manage orders */
+    @GET(Constants.GET_ORDERS)
+    suspend fun getOrders(@Header("token") token: String, @Header("limit") limit : Int): OrderResponse
+
     @Multipart
     @POST(Constants.ADD_ORDER)
     suspend fun addOrder(@Header("token") token : String,
@@ -46,13 +67,6 @@ interface MarketApi {
                          @Part("status") status : String,
                          @Part("owner_username") owner_username : String,
                          @Part("revolut_link") revolut_link : String) : AddOrderResponse
-
-    @GET(Constants.GET_ORDERS)
-    suspend fun getOrders(@Header("token") token: String): OrderResponse
-
-    @POST(Constants.REMOVE_PRODUCTS)
-    suspend fun removeProduct(@Header("token") token : String,
-                              @Query("product_id") productId : String) : RemoveProductResponse
 
     @POST(Constants.UPDATE_ORDER)
     suspend fun updateOrder(@Header("token") token : String,

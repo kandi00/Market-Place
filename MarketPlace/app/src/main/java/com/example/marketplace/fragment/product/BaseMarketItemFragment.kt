@@ -1,4 +1,4 @@
-package com.example.marketplace.fragment
+package com.example.marketplace.fragment.product
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,7 +14,7 @@ import com.example.marketplace.util.Constants
 import com.example.marketplace.viewmodels.ListViewModel
 import com.google.android.material.textfield.TextInputEditText
 
-open abstract class BaseMarketItemFragment<VB : ViewBinding> : Fragment() {
+abstract class BaseMarketItemFragment<VB : ViewBinding> : Fragment() {
 
     protected var _binding : VB? = null
     protected val binding get() = _binding!!
@@ -37,18 +37,6 @@ open abstract class BaseMarketItemFragment<VB : ViewBinding> : Fragment() {
         super.onCreate(savedInstanceState)
         listViewModel = ViewModelProvider(requireActivity()).get(ListViewModel::class.java)
     }
-
-//    override fun onCreateView(
-//        inflater: LayoutInflater,
-//        container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        onCreateViewBinding(inflater, container)
-//        Log.i("base", "onCreateView")
-//        _binding =
-//
-//        return binding.root
-//    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -73,8 +61,8 @@ open abstract class BaseMarketItemFragment<VB : ViewBinding> : Fragment() {
         productDescription = fragmentBaseMarketItemBinding.etAddProductDetailDescription1
         button = fragmentBaseMarketItemBinding.launchMyFareButton
 
-        switch.textOff = "Inactive"
-        switch.textOn = "Active"
+        switch.textOff = getString(R.string.inactive)
+        switch.textOn = getString(R.string.active)
     }
 
     protected fun setAutoCompleteTextViewAdapters(){
@@ -98,28 +86,25 @@ open abstract class BaseMarketItemFragment<VB : ViewBinding> : Fragment() {
         }
     }
 
-    protected fun checkData(){
+    protected fun checkInputData(){
         flag = true
         if (productTitle.text.toString().length > 30 || productDescription.text.toString().length > 150 || productPrice.text.toString().length > 10) {
-            Toast.makeText(context, "Character limit exceeded!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.char_limit), Toast.LENGTH_SHORT).show()
             flag = false
         }
 
         if (productTitle.text.toString().isEmpty()) {
-            flag = false; fragmentBaseMarketItemBinding.etAddProductDetailTitle.helperText =
-                "Your fare needs to have a title"
+            flag = false; fragmentBaseMarketItemBinding.etAddProductDetailTitle.helperText = getString(R.string.mandatory_title)
         } else {
             fragmentBaseMarketItemBinding.etAddProductDetailTitle.helperText = ""
         }
         if (productDescription.text.toString().isEmpty()) {
-            flag = false; fragmentBaseMarketItemBinding.etAddProductDetailDescription.helperText =
-                "Give your fare a fair price"
+            flag = false; fragmentBaseMarketItemBinding.etAddProductDetailDescription.helperText = getString(R.string.fair_price)
         } else {
             fragmentBaseMarketItemBinding.etAddProductDetailDescription.helperText = ""
         }
         if (productPrice.text.toString().isEmpty()) {
-            flag = false; fragmentBaseMarketItemBinding.etAddProductDetailPriceAmount.helperText =
-                "Describe your product, like its origin, made for..."
+            flag = false; fragmentBaseMarketItemBinding.etAddProductDetailPriceAmount.helperText = getString(R.string.add_description)
         } else {
             fragmentBaseMarketItemBinding.etAddProductDetailPriceAmount.helperText = ""
         }

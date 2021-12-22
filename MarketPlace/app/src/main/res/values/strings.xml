@@ -7,14 +7,19 @@
     <string name="log_in">Log in</string>
     <string name="name">Name</string>
     <string name="password">Password</string>
+    <string name="tel">Phone number</string>
     <string name="new_to_bazaar">New to Bazaaar?</string>
     <string name="sign_up">Sign up</string>
     <string name="register">Register</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="username">User name</string>
     <string name="input_text">Input text</string>
-    <string name="user_name">User name</string>
     <string name="give_us_details_about_your_fare">Give us details about your fare</string>
+    <string name="char_limit">Character limit exceeded!</string>
+    <string name="mandatory_title">Your fare must have a title</string>
+    <string name="fair_price">Give your fare a fair price</string>
+    <string name="add_description">Describe your product, like its origin, made for</string>
+    <string name="add_valid_number">Give a valid number!</string>
     <string name="inactive">Inactive</string>
     <string name="active">Active</string>
     <string name="email">Email</string>
@@ -25,7 +30,7 @@
     <string name="kg">KG</string>
     <string name="short_description">Short description</string>
     <string name="launch_my_fare">Launch my fare</string>
-    <string name="forgot_password">Forgot password</string>
+    <string name="forgot_password">Forgot password?</string>
     <string name="reset_password">We will send you an email with instructions on how to reset your passsword</string>
     <string name="email_me">Email me</string>
     <string name="phone_number">Phone number</string>
@@ -48,6 +53,10 @@
     <string name="delivering_order">Delivering order</string>
     <string name="delivered_order">Delivered order</string>
     <string name="accepted_order">Accepted order</string>
+    <string name="invalid_user_name">Invalid user name</string>
+    <string name="invalid_email">Invalid email</string>
+    <string name="invalid_password">Invalid password</string>
+    <string name="invalid_phone_number">Invalid phone number</string>
 
     <string-array name="currencies">
         <item>RON</item>
