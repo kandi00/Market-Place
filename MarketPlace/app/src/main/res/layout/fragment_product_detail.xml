@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/product_detail_fragment_iv1_layout_height"
             android:src="@drawable/prune"
+            android:layout_marginTop="@dimen/marginTopBottom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

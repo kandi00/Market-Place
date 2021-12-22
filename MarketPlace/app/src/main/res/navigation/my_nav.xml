@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.marketplace.fragment.login.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="Login" >
         <action
             android:id="@+id/action_loginFragment_to_timelineFragment"
             app:destination="@id/timelineFragment" />
@@ -22,18 +22,21 @@
     <fragment
         android:id="@+id/myMarketFragment"
         android:name="com.example.marketplace.fragment.product.MyMarketFragment"
-        android:label="MyMarketFragment" >
+        android:label="My market" >
         <action
             android:id="@+id/action_myMarketFragment_to_addDetailMarketFragment"
             app:destination="@id/addDetailMarketFragment" />
         <action
             android:id="@+id/action_myMarketFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment" />
+        <action
+            android:id="@+id/action_myMarketFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.marketplace.fragment.profile.ProfileFragment"
-        android:label="ProfileFragment" >
+        android:label="Profile" >
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
@@ -41,18 +44,21 @@
     <fragment
         android:id="@+id/timelineFragment"
         android:name="com.example.marketplace.fragment.product.TimelineFragment"
-        android:label="TimelineFragment" >
+        android:label="Timeline" >
         <action
             android:id="@+id/action_timelineFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment" />
         <action
             android:id="@+id/action_timelineFragment_to_addOrderDetailFragment"
             app:destination="@id/addOrderDetailFragment" />
+        <action
+            android:id="@+id/action_timelineFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
         android:name="com.example.marketplace.fragment.product.ProductDetailFragment"
-        android:label="ProductDetailFragment" >
+        android:label="Product details" >
         <action
             android:id="@+id/action_productDetailFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
@@ -63,11 +69,11 @@
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.example.marketplace.fragment.profile.EditProfileFragment"
-        android:label="EditProfileFragment" />
+        android:label="Edit profile" />
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.marketplace.fragment.register.RegisterFragment"
-        android:label="RegisterFragment" >
+        android:label="Register" >
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -75,32 +81,35 @@
     <fragment
         android:id="@+id/forgotPasswordFragment"
         android:name="com.example.marketplace.fragment.login.ForgotPasswordFragment"
-        android:label="ForgotPasswordFragment" />
+        android:label="Forgot password" />
     <fragment
         android:id="@+id/addDetailMarketFragment"
         android:name="com.example.marketplace.fragment.product.AddMarketItemFragment"
-        android:label="AddDetailMarketFragment" />
+        android:label="Create your product" />
     <fragment
         android:id="@+id/editDetailMarketItemFragment"
         android:name="com.example.marketplace.fragment.product.EditDetailMarketItemFragment"
-        android:label="EditDetailMarketItemFragment" />
+        android:label="Edit your product" />
     <fragment
         android:id="@+id/addOrderDetailFragment"
         android:name="com.example.marketplace.fragment.order.AddOrderFragment"
-        android:label="fragment_add_order_detail"
+        android:label="Add order details"
         tools:layout="@layout/fragment_add_order" />
     <fragment
         android:id="@+id/myFaresFragment"
         android:name="com.example.marketplace.fragment.order.MyFaresFragment"
-        android:label="fragment_my_fares"
+        android:label="My fares"
         tools:layout="@layout/fragment_my_fares" >
         <action
             android:id="@+id/action_myFaresFragment_to_orderDetailFragment"
             app:destination="@id/orderDetailFragment" />
+        <action
+            android:id="@+id/action_myFaresFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderDetailFragment"
         android:name="com.example.marketplace.fragment.order.OrderDetailFragment"
-        android:label="fragment_order_detail"
+        android:label="Order details"
         tools:layout="@layout/fragment_order_detail" />
 </navigation>

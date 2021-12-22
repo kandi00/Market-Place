@@ -30,7 +30,11 @@ class LoginViewModel(val repository: Repository) : ViewModel() {
         Log.d(tag, "MyApplication - token:  ${MyApplication.token}")
         user.value!!.email = result.email
         user.value!!.phone_number = result.phone_number.toString()
+        user.value!!.username = result.username
         Log.i(tag, user.value.toString())
+        randomUser.email = result.email
+        randomUser.phone_number = result.phone_number.toString()
+        randomUser.username = result.username
     }
 
     suspend fun register(username: String, email: String, password: String, phone_number: Long) {

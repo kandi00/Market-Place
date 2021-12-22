@@ -57,6 +57,10 @@
     <string name="invalid_email">Invalid email</string>
     <string name="invalid_password">Invalid password</string>
     <string name="invalid_phone_number">Invalid phone number</string>
+    <string name="profile">profile</string>
+    <string name="content_description_profile">Profile icon</string>
+    <string name="search">search</string>
+    <string name="content_description_search">Search icon</string>
 
     <string-array name="currencies">
         <item>RON</item>

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.order.OrderDetailFragment">
+    tools:context=".fragment.order.OrderDetailFragment"
+    android:layout_marginBottom="60dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,7 +14,8 @@
         <ImageView
             android:id="@+id/tv_order_detail_image_of_product"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="@dimen/marginTopBottom"
             android:background="@color/turquoise"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +98,8 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_order_detail_order_total_price" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_order_detail_order_total_price"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="marginTopBottom">50dp</dimen>
     <!--    MainActivity-->
 
     <!--    LoginFragment/RegisterFragment-->
@@ -20,7 +21,7 @@
     <dimen name="login_fragment_button_text_size">14sp</dimen>
 
     <!--    Product detail fragment-->
-    <dimen name="product_detail_fragment_iv1_layout_height">300dp</dimen>
+    <dimen name="product_detail_fragment_iv1_layout_height">200dp</dimen>
     <dimen name="product_detail_fragment_iv2_layout_width">80dp</dimen>
     <dimen name="product_detail_fragment_iv2_layout_height">80dp</dimen>
     <dimen name="product_detail_fragment_iv2_layout_marginStart">20dp</dimen>

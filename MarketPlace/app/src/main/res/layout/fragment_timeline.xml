@@ -11,7 +11,8 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/timeline_fragment_rv_layout_marginBottom"
+        android:layout_marginTop="@dimen/marginTopBottom"
+        android:layout_marginBottom="@dimen/marginTopBottom"
         android:background="@color/dirtyWhite"
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/product_item_timeline" />
