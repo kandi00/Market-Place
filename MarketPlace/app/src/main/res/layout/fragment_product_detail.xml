@@ -29,7 +29,7 @@
             android:layout_height="@dimen/product_detail_fragment_iv2_layout_height"
             android:layout_marginStart="@dimen/product_detail_fragment_iv2_layout_marginStart"
             android:layout_marginTop="@dimen/product_detail_fragment_iv2_layout_marginTop"
-            android:src="@drawable/ic_user"
+            android:src="@drawable/ic_account_circle"
             app:civ_border_color="@color/dirtyWhite"
             app:civ_border_width="1dp"
             app:layout_constraintStart_toStartOf="parent"

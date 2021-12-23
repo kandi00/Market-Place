@@ -62,6 +62,10 @@ class MainActivity : AppCompatActivity() {
         searchIcon = toolBar.menu.findItem(R.id.appBar_search)
         profileIcon = toolBar.menu.findItem(R.id.appBar_profile_icon)
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
 }
 
 

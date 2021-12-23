@@ -35,7 +35,7 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="10dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/prune"
+                android:src="@drawable/ic_account_circle"
                 card_view:civ_border_color="@color/dirtyWhite"
                 card_view:civ_border_width="1dp"
                 card_view:layout_constraintStart_toEndOf="@+id/imageView_timeline_product_image"

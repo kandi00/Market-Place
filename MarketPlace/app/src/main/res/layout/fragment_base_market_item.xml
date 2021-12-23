@@ -9,6 +9,7 @@
         android:id="@+id/iv_add_product_detail_image"
         android:layout_width="match_parent"
         android:layout_height="180dp"
+        android:layout_marginTop="@dimen/marginTopBottom"
         android:background="@color/turquoise"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

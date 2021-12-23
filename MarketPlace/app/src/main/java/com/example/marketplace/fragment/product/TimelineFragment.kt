@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +19,7 @@ import com.example.marketplace.model.Product
 import com.example.marketplace.repository.Repository
 import com.example.marketplace.viewmodels.ListViewModel
 import com.example.marketplace.viewmodels.ListViewModelFactory
+import com.example.marketplace.viewmodels.LoginViewModel
 
 class TimelineFragment : Fragment(), TimelineDataAdapter.OnItemClickListener {
 
@@ -27,6 +27,7 @@ class TimelineFragment : Fragment(), TimelineDataAdapter.OnItemClickListener {
     private val binding get() = _binding!!
     private lateinit var fragment : View
     private lateinit var listViewModel: ListViewModel
+    private lateinit var loginViewModel: LoginViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: TimelineDataAdapter
     private lateinit var myActivity: Activity
@@ -38,8 +39,9 @@ class TimelineFragment : Fragment(), TimelineDataAdapter.OnItemClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val factory = ListViewModelFactory(Repository())
+        val factory = ListViewModelFactory(requireActivity(), Repository())
         listViewModel = ViewModelProvider(requireActivity(), factory).get(ListViewModel::class.java)
+        loginViewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -78,6 +80,10 @@ class TimelineFragment : Fragment(), TimelineDataAdapter.OnItemClickListener {
         /** setup profile icon */
         (myActivity as MainActivity).profileIcon.isVisible = true
         (myActivity as MainActivity).profileIcon.setOnMenuItemClickListener {
+            /** Set current user's data for profile fragment */
+            loginViewModel.randomUser.username = loginViewModel.user.value!!.username
+            loginViewModel.randomUser.email = loginViewModel.user.value!!.email
+            loginViewModel.randomUser.phone_number = loginViewModel.user.value!!.phone_number
             findNavController().navigate(R.id.action_timelineFragment_to_profileFragment)
             true
         }

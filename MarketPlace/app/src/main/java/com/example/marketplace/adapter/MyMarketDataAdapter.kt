@@ -89,15 +89,6 @@ class MyMarketDataAdapter(
                 .override(20, 20)
                 .into(holder.imageViewIsActive)
         }
-
-//        val images = currentItem.images
-//        if( images != null && images.size > 0) {
-//            Log.d("xxx", "#num_images: ${images.size}")
-//        }
-//        Glide.with(this.context)
-//            .load(R.drawable.ic_user)
-//            .override(200, 200)
-//            .into(holder.imageViewProduct)
     }
 
     override fun getItemCount() = list.size

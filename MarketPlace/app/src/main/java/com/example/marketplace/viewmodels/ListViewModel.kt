@@ -1,18 +1,19 @@
 package com.example.marketplace.viewmodels
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.marketplace.MyApplication
 import com.example.marketplace.model.*
 import com.example.marketplace.repository.Repository
 import kotlinx.coroutines.launch
 
-class ListViewModel(private val repository: Repository) : ViewModel() {
+class ListViewModel(val context: Context, private val repository: Repository) : ViewModel() {
     var tag = "ListViewModel"
     var products: MutableLiveData<ArrayList<Product>> = MutableLiveData()
     var orders: MutableLiveData<ArrayList<Order>> = MutableLiveData()
     var currentProductId: String = ""
     var currentOrderId: String = ""
+    private var sharedPref = context.applicationContext.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
 
     init {
         getProducts()
@@ -23,7 +24,7 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
         viewModelScope.launch {
             try {
                 val result =
-                    repository.getProducts(MyApplication.token, 200)
+                    repository.getProducts(sharedPref.getString("token", null).toString(), 200)
                 products.value = result.products as ArrayList<Product>
                 Log.d(tag, "ListViewModel - #products:  ${result.item_count}")
             } catch (e: Exception) {
@@ -48,7 +49,7 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
     ) {
         viewModelScope.launch {
             val result = repository.addProduct(
-                MyApplication.token,
+                sharedPref.getString("token", null).toString(),
                 title,
                 description,
                 price_per_unit,
@@ -72,8 +73,7 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
                     description,
                     title,
                     mutableListOf(),
-                    result.creation_time,
-                    mutableListOf()
+                    result.creation_time
                 )
             )
         }
@@ -83,7 +83,7 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
         viewModelScope.launch {
             val currentProduct = getCurrentProduct()
             val result = repository.updateProduct(
-                MyApplication.token,
+                sharedPref.getString("token", null).toString(),
                 currentProduct.product_id,
                 updateProduct
             )
@@ -103,7 +103,7 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
             try {
                 products.value!!.remove(products.value!!.filter { it.product_id == productId }[0])
                 Log.i("product list", products.value.toString())
-                val result = repository.removeProduct(MyApplication.token, productId)
+                val result = repository.removeProduct( sharedPref.getString("token", null).toString(), productId)
                 Log.i(tag, "Product removal message:  ${result.message}")
             } catch (e: Exception) {
                 Log.d(tag, "ListViewModel remove product exception: $e")
@@ -115,7 +115,7 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
         orders.value = arrayListOf()
         viewModelScope.launch {
             try {
-                val result = repository.getOrders(MyApplication.token, 200)
+                val result = repository.getOrders( sharedPref.getString("token", null).toString(), 200)
                 orders.value = result.orders as ArrayList<Order>
                 Log.d(tag, "orders:  ${result.orders}")
             } catch (e: Exception) {
@@ -130,7 +130,7 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
 
     fun addOrder(addOrder: AddOrder) {
         viewModelScope.launch {
-            val result = repository.addOrder(MyApplication.token, addOrder)
+            val result = repository.addOrder( sharedPref.getString("token", null).toString(), addOrder)
             Log.i("result", result.toString())
             orders.value!!.add(
                 Order(
@@ -154,7 +154,7 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
             //500-as hibakodot ad - internal server error, de az update vegrehajtodik
             orders.value!!.filter { it.order_id == orderId }[0].status = status
             try {
-                val result = repository.updateOrder(MyApplication.token, orderId, UpdateOrderRequest(status))
+                val result = repository.updateOrder( sharedPref.getString("token", null).toString(), orderId, UpdateOrderRequest(status))
                 Log.i(tag, "Order update: ${result.timestamp}")
             } catch (e: Exception) {
                 Log.d(tag, "ListViewModel order update exception: $e")

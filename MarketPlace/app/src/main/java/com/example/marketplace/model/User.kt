@@ -1,7 +1,6 @@
 package com.example.marketplace.model
 
 import com.squareup.moshi.JsonClass
-import retrofit2.http.Part
 
 data class User(var username: String="", var password: String="", var email: String="", var phone_number: String="")
 
@@ -15,7 +14,7 @@ data class LoginRequest (
 data class LoginResponse (
     var username: String,
     var email: String,
-    var phone_number: Int,
+    var phone_number: Long,
     var token: String,
     var creation_time: Long,
     var refresh_time: Long
@@ -33,14 +32,14 @@ data class UserInfoResponse(val code: Int, val data: List<UserInfo>, val timesta
 
 @JsonClass(generateAdapter = true)
 data class UpdateUserDataRequest(
-    var phone_number: Int,
+    var phone_number: Long,
     var username: String
 )
 
 @JsonClass(generateAdapter = true)
 data class UpdatedUserInfo (
     var username: String,
-    var phone_number: Int,
+    var phone_number: Long,
     var email: String,
     var firebase_token : String,
     var is_activated: Boolean,

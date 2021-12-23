@@ -1,6 +1,8 @@
 package com.example.marketplace.fragment.login
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Button
@@ -31,9 +33,26 @@ class LoginFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val factory = LoginViewModelFactory(Repository())
+        val factory = LoginViewModelFactory(this.requireContext(), Repository())
         loginViewModel =
             ViewModelProvider(requireActivity(), factory).get(LoginViewModel::class.java)
+
+        /** Check if the user is logged in */
+        val sharedPref = requireActivity().applicationContext.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
+        val userName = sharedPref.getString("userName", null)
+        val password = sharedPref.getString("password", null)
+        val phoneNumber = sharedPref.getString("phoneNumber", null)
+        val email = sharedPref.getString("email", null)
+        val token = sharedPref.getString("token", null)
+        Log.i("token", token.toString())
+        if(!userName.isNullOrEmpty() && !password.isNullOrEmpty() && !token.isNullOrEmpty()){
+            loginViewModel.token.value =  token.toString()
+            loginViewModel.user.value!!.username = userName.toString()
+            loginViewModel.user.value!!.password = password.toString()
+            loginViewModel.user.value!!.phone_number = phoneNumber.toString()
+            loginViewModel.user.value!!.email = email.toString()
+            findNavController().navigate(R.id.action_loginFragment_to_timelineFragment)
+        }
     }
 
     override fun onCreateView(
@@ -45,7 +64,6 @@ class LoginFragment : Fragment() {
         fragment = binding.root
         initializeElements()
         setListeners()
-
         loginViewModel.token.observe(viewLifecycleOwner) {
             findNavController().navigate(R.id.action_loginFragment_to_timelineFragment)
         }

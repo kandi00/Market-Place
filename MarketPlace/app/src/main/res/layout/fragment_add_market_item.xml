@@ -25,7 +25,7 @@
                 android:id="@+id/iv_add_product_detail_upload_image"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="100dp"
                 android:backgroundTint="@color/turquoise"
                 android:src="@drawable/frame"
                 app:layout_constraintEnd_toEndOf="parent"

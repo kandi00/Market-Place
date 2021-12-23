@@ -1,21 +1,24 @@
 package com.example.marketplace.viewmodels
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.marketplace.MyApplication
 import com.example.marketplace.model.*
 import com.example.marketplace.repository.Repository
 import kotlinx.coroutines.launch
 
-class LoginViewModel(val repository: Repository) : ViewModel() {
+class LoginViewModel(val context: Context, val repository: Repository) : ViewModel() {
     private val tag = "LoginViewModel"
     var token: MutableLiveData<String> = MutableLiveData()
     val registrationCode: MutableLiveData<Int> = MutableLiveData()
     val activation: MutableLiveData<Boolean> = MutableLiveData()
     var user = MutableLiveData<User>()
     var randomUser = User()
+    private lateinit var sharedPref : SharedPreferences
+    private lateinit var editor : SharedPreferences.Editor
 
     init {
         user.value = User()
@@ -25,16 +28,25 @@ class LoginViewModel(val repository: Repository) : ViewModel() {
         val request =
             LoginRequest(username = user.value!!.username, password = user.value!!.password)
         val result = repository.login(request)
-        MyApplication.token = result.token
         token.value = result.token
-        Log.d(tag, "MyApplication - token:  ${MyApplication.token}")
         user.value!!.email = result.email
         user.value!!.phone_number = result.phone_number.toString()
         user.value!!.username = result.username
-        Log.i(tag, user.value.toString())
         randomUser.email = result.email
         randomUser.phone_number = result.phone_number.toString()
         randomUser.username = result.username
+
+        /** Ads token, userName and password to shared preferences*/
+        sharedPref = context.applicationContext.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
+        editor = sharedPref.edit()
+        editor.apply {
+            putString("token", token.value)
+            putString("userName", result.username)
+            putString("password", user.value!!.password)
+            putString("phoneNumber", user.value!!.phone_number)
+            putString("email", user.value!!.email)
+            apply()
+        }
     }
 
     suspend fun register(username: String, email: String, password: String, phone_number: Long) {
@@ -87,10 +99,13 @@ class LoginViewModel(val repository: Repository) : ViewModel() {
     fun updateUserData(userName: String, phoneNumber: String) {
         viewModelScope.launch {
             val result = repository.updateUserData(
-                MyApplication.token,
-                UpdateUserDataRequest(phoneNumber.toInt(), userName)
+                sharedPref.getString("token", null).toString(),
+                UpdateUserDataRequest(phoneNumber.toLong(), userName)
             )
-            MyApplication.token = result.updatedData.token
+            editor.apply {
+                putString("token", result.updatedData.token)
+                apply()
+            }
             user.value!!.email = result.updatedData.email
             user.value!!.username = result.updatedData.username
             user.value!!.phone_number = result.updatedData.phone_number.toString()

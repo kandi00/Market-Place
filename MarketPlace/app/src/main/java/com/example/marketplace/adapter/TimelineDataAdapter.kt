@@ -60,14 +60,6 @@ class TimelineDataAdapter(
         holder.textViewName.text = currentItem.title
         holder.textViewPrice.text = "${currentItem.price_per_unit} ${currentItem.price_type} / ${currentItem.amount_type}"
         holder.textViewSeller.text = currentItem.username
-        val images = currentItem.images
-        if( images != null && images.size > 0) {
-            Log.d("xxx", "#num_images: ${images.size}")
-        }
-        Glide.with(this.context)
-            .load(R.drawable.ic_user)
-            .override(200, 200)
-            .into(holder.imageViewProduct)
     }
 
     override fun getItemCount() = list.size
