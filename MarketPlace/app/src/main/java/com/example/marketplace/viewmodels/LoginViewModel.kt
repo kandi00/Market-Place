@@ -97,15 +97,25 @@ class LoginViewModel(val context: Context, val repository: Repository) : ViewMod
     }
 
     fun updateUserData(userName: String, phoneNumber: String) {
+        sharedPref = context.applicationContext.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
+        editor = sharedPref.edit()
         viewModelScope.launch {
             val result = repository.updateUserData(
                 sharedPref.getString("token", null).toString(),
                 UpdateUserDataRequest(phoneNumber.toLong(), userName)
             )
+            /** update user data in shared preference */
             editor.apply {
                 putString("token", result.updatedData.token)
+                putString("userName", result.updatedData.username)
+                putString("phoneNumber", result.updatedData.phone_number.toString())
                 apply()
             }
+            /** update random user data, because currently this is the logged in user */
+            randomUser.email = result.updatedData.email
+            randomUser.username = result.updatedData.username
+            randomUser.phone_number = result.updatedData.phone_number.toString()
+            /** update logged in user data */
             user.value!!.email = result.updatedData.email
             user.value!!.username = result.updatedData.username
             user.value!!.phone_number = result.updatedData.phone_number.toString()

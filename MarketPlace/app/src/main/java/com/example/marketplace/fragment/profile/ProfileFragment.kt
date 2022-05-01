@@ -40,6 +40,9 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         fragment = binding.root
+        loginViewModel.user.observe(viewLifecycleOwner){
+            setValues()
+        }
         initializeElements()
         setOnClickListeners()
         setValues()
